@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
 import tw from "tailwind-react-native-classnames";
+import NavOptions from "../components/NavOptions";
 
 const HomeScreen = () => {
   return (
@@ -14,6 +15,8 @@ const HomeScreen = () => {
           }}
           source={require("/home/oscar/Dev/caliberhairstudio/frontend/assets/caliber_logo_150x150.png")} // must be a better way to write this
         />
+
+        <NavOptions />
       </View>
     </SafeAreaView>
   );
