@@ -8,13 +8,13 @@ const data = [
   {
     id: "1",
     title: "Products",
-    image: require("/Users/omiranda/dev_folder/caliberhairstudiomobile/frontend/assets/products/wash_224x224.png"), // instead of require could be uri
+    image: require("../assets/products/wash_224x224.png"), // instead of require could be uri
     screen: "ProductsScreen",
   },
   {
     id: "2",
     title: "Artists",
-    image: require("/Users/omiranda/dev_folder/caliberhairstudiomobile/frontend/assets/profile/chris_profile.jpg"),
+    image: require("../assets/profile/chris_profile.jpg"),
     screen: "ArtistsScreen",
   },
 ];
@@ -35,7 +35,7 @@ const NavOptions = () => {
           <View>
             <Image
               style={{ width: 120, height: 120, resizeMode: "contain" }}
-              source={item.image} // could also be { uri: item.image } // but i dont know how to do it without require for local resources
+              source={item.image} // could also be { uri: item.image }
             />
             <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
             <Icon
