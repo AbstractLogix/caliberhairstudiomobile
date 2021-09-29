@@ -13,7 +13,7 @@ const HomeScreen = () => {
             height: 100,
             resizeMode: "contain",
           }}
-          source={require("/home/oscar/Dev/caliberhairstudio/frontend/assets/caliber_logo_150x150.png")} // must be a better way to write this
+          source={require("/Users/omiranda/dev_folder/caliberhairstudiomobile/frontend/assets/caliber_logo_150x150.png")} // must be a better way to write this
         />
 
         <NavOptions />

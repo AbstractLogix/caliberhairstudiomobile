@@ -8,13 +8,13 @@ const data = [
   {
     id: "1",
     title: "Products",
-    image: require("/home/oscar/Dev/caliberhairstudio/frontend/assets/products/wash_224x224.png"), // instead of require could be uri
+    image: require("/Users/omiranda/dev_folder/caliberhairstudiomobile/frontend/assets/products/wash_224x224.png"), // instead of require could be uri
     screen: "ProductsScreen",
   },
   {
     id: "2",
     title: "Artists",
-    image: require("/home/oscar/Dev/caliberhairstudio/frontend/assets/profile/chris_profile.jpg"),
+    image: require("/Users/omiranda/dev_folder/caliberhairstudiomobile/frontend/assets/profile/chris_profile.jpg"),
     screen: "ArtistsScreen",
   },
 ];
