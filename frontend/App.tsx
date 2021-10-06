@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./app/screens/HomeScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ProductsScreen from "./screens/ProductsScreen";
-import ArtistsScreen from "./screens/ArtistsScreen";
+import ProductsScreen from "./app/screens/ProductsScreen";
+import ArtistsScreen from "./app/screens/ArtistsScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
