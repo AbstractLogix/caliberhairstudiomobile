@@ -14,17 +14,8 @@ CLIENT NEEDS
 Tech 
 •	React Native 
 o	Expo
-o	Redux
 o	Tailwind CSS
 o	React native elements, vector icons, and safe area context
-•	Java
-o	Spring boot ( serverless )
-	Spring Web
-	JPA
-	H2 ( in memory store for now )
-•	Db
-o	SQLite
-o	Local storage ( photos of products and others will be stored in minimum resolution for less important images to reduce size on device when there is no internet connection )
 
 Architecture
 Square integration is the crux of this application and I’ve decided to use Square’s payment SDK to handle payments.
@@ -40,6 +31,12 @@ a.	Portfolios
 
 
 ---notes---
+
+Expo-cli required
+react required
+yarn start
+
+
   Run instructions for Android:
     • Have an Android emulator running (quickest way to get started), or a device connected.
     • cd "/Users/omiranda/dev_folder/caliberhairstudiomobile/test_frontend/frontend" && npx react-native run-android

@@ -10,6 +10,7 @@ import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
+import colors from "../config/colors";
 
 const products = [
   {
@@ -34,6 +35,18 @@ const products = [
     id: "4",
     title: "Primer",
     image: require("../assets/products/primer_224x224.png"),
+    screen: "ProductScreen",
+  },
+  {
+    id: "5",
+    title: "Super-Dry",
+    image: require("../assets/products/super-dry_512x512.png"),
+    screen: "ProductScreen",
+  },
+  {
+    id: "6",
+    title: "Wash",
+    image: require("../assets/products/wash_224x224.png"),
     screen: "ProductScreen",
   },
 ];
@@ -73,4 +86,11 @@ const ProductsScreen = () => {
 
 export default ProductsScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: "center",
+    justifyContent: "center",
+  }
+});
