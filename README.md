@@ -20,6 +20,8 @@ o	React native elements, vector icons, and safe area context
 Architecture
 Square integration is the crux of this application and I’ve decided to use Square’s payment SDK to handle payments.
 
+https://user-images.githubusercontent.com/2245068/136293371-48ffad76-718a-4fb5-9281-70fecccdef72.png
+
 
 Screens
 1.	HomeScreen
@@ -49,3 +51,5 @@ yarn start
 
   Run instructions for macOS:
     • See https://aka.ms/ReactNativeGuideMacOS for the latest up-to-date instructions.
+
+
