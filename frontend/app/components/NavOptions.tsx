@@ -17,6 +17,12 @@ const data = [
     image: require("../assets/profile/chris_profile.jpg"),
     screen: "ArtistsScreen",
   },
+  {
+    id: "3",
+    title: "Gallery",
+    image: require("../assets/profile/chris_profile.jpg"),
+    screen: "GalleryScreen",
+  },
 ];
 
 const NavOptions = () => {
@@ -25,7 +31,7 @@ const NavOptions = () => {
   return (
     <FlatList
       data={data}
-      horizontal
+      numColumns={2}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity

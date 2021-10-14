@@ -87,10 +87,10 @@ const ProductsScreen = () => {
 export default ProductsScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-  }
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "dodgerblue",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // }
 });

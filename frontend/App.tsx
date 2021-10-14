@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductsScreen from "./app/screens/ProductsScreen";
 import ArtistsScreen from "./app/screens/ArtistsScreen";
+import GalleryScreen from "./app/screens/GalleryScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -41,6 +42,13 @@ export default function App() {
           <Stack.Screen
             name="ArtistsScreen"
             component={ArtistsScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="GalleryScreen"
+            component={GalleryScreen}
             options={{
               headerShown: false,
             }}
