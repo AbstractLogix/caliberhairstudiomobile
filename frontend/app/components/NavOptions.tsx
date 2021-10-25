@@ -35,7 +35,8 @@ const NavOptions = () => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
-          onPress={() => navigation.navigate(item.screen)} // need typescript solution to this
+          // @ts-ignore
+          onPress={() => navigation.navigate(item.screen)}
           style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-100 m-2 w-40`}
         >
           <View>
