@@ -1,6 +1,8 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { SafeAreaView, StyleSheet, Button, View } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 import tw from "tailwind-react-native-classnames";
+
 import NavOptions from "../components/NavOptions";
 
 const HomeScreen = () => {
@@ -16,6 +18,14 @@ const HomeScreen = () => {
           source={require("../assets/caliber_logo_150x150.png")} // must be a better way to write this
         /> */}
         <NavOptions />
+        <Button
+          title="Make an appointment"
+          onPress={() =>
+            WebBrowser.openBrowserAsync(
+              "https://www.schedulicity.com/scheduling/CHSW4RC"
+            )
+          }
+        />
       </View>
     </SafeAreaView>
   );
@@ -23,4 +33,8 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    marginVertical: 10,
+  },
+});
