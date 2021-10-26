@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, Image, Alert } from "react-native";
+import { StyleSheet, Image, Alert, useColorScheme } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
+import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
@@ -25,9 +25,10 @@ function LogoTitle() {
 
 const NavigationStack = () => {
   const Stack = createNativeStackNavigator();
+  const scheme = useColorScheme();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
       <SafeAreaProvider>
         <Stack.Navigator
           screenOptions={{
