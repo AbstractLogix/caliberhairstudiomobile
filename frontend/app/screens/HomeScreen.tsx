@@ -7,8 +7,9 @@ import NavOptions from "../components/NavOptions";
 
 const HomeScreen = () => {
   return (
+    // infamous white background for home page is found here
     <SafeAreaView style={tw`bg-white h-full`}>
-      <View style={tw`p-5`}>
+      <View style={tw`p-8`}>
         <NavOptions />
       </View>
       <View style={styles.button}>
