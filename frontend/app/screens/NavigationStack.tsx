@@ -15,7 +15,7 @@ const NavigationStack = () => {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <SafeAreaView>
+        <SafeAreaView style={styles.header}>
           <Image
             style={{
               width: 100,
@@ -62,4 +62,8 @@ const NavigationStack = () => {
 
 export default NavigationStack;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    height: 150,
+  },
+});
