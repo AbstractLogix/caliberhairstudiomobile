@@ -1,16 +1,20 @@
 import React from "react";
 import { StyleSheet, Image, Alert, useColorScheme } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import tw from "tailwind-react-native-classnames";
 
 import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
 import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
 import AdminLoginScreen from "./AdminLoginScreen";
+import ProductScreen from "./ProductScreen";
 
 function LogoTitle() {
   return (
@@ -50,6 +54,7 @@ const NavigationStack = () => {
               headerShown: true,
             }}
           />
+          <Stack.Screen name="ProductScreen" component={ProductScreen} />
           <Stack.Screen
             name="ArtistsScreen"
             component={ArtistsScreen}
