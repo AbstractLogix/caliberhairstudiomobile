@@ -10,7 +10,7 @@ import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
-import colors from "../config/colors";
+import colors from "../config/theme";
 
 const products = [
   {

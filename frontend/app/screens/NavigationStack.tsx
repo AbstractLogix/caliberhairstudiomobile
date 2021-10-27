@@ -5,6 +5,7 @@ import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
+  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -17,8 +18,11 @@ import AdminLoginScreen from "./AdminLoginScreen";
 import ProductScreen from "./ProductScreen";
 
 function LogoTitle() {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity>
+    // @ts-ignore
+    <TouchableOpacity onPress={() => navigation.navigate("AdminLoginScreen")}>
       <Image
         style={styles.logo}
         source={require("../assets/caliber_logo_150x150.png")}
@@ -69,6 +73,7 @@ const NavigationStack = () => {
               headerShown: true,
             }}
           />
+          <Stack.Screen name="AdminLoginScreen" component={AdminLoginScreen} />
         </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>

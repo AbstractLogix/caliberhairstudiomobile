@@ -4,6 +4,7 @@ import * as WebBrowser from "expo-web-browser";
 import tw from "tailwind-react-native-classnames";
 
 import NavOptions from "../components/NavOptions";
+import NavigationStack from "./NavigationStack";
 
 const HomeScreen = () => {
   return (
