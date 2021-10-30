@@ -1,11 +1,5 @@
-import React from "react";
-import { Text, View } from "react-native";
-
+// Inventory endpoints Square Api
 const inventoryURL: string = "https://connect.squareup.com/v2/inventory/";
-
-const SquareApi = () => {
-  return { getInventoryCount, getInventoryPhysicalCount };
-};
 
 // GET /v2/inventory/{catalog_object_id}
 // Retrieve inventory count
@@ -14,9 +8,7 @@ const SquareApi = () => {
 
 const getInventoryCount = async (catalog_object_id: string) => {
   try {
-    const response = await fetch(
-      inventoryURL + catalog_object_id // dummy link
-    );
+    const response = await fetch(inventoryURL + catalog_object_id);
     const json = await response.json();
     return json.counts;
   } catch (error) {
@@ -46,5 +38,8 @@ const getInventoryPhysicalCount = async (physical_count_id: string) => {
 
 const batchRetrieveInventoryCounts = () => {};
 
-//
-export default SquareApi;
+const inventory = () => {
+  return { getInventoryCount, getInventoryPhysicalCount };
+};
+
+export default inventory;

@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Image, Alert, useColorScheme } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, Image, useColorScheme, Text } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,6 +9,8 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Icon } from "react-native-elements";
+import tw from "tailwind-react-native-classnames";
 
 import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
@@ -31,18 +33,38 @@ function LogoTitle() {
   );
 }
 
+function SiteMapMenu() {
+  return (
+    // @ts-ignore
+    <TouchableOpacity /* onPress={() => navigation.navigate("AdminLoginScreen")}*/
+    >
+      <Icon
+        style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+        name="menuunfold"
+        color="white"
+        type="antdesign"
+      />
+    </TouchableOpacity>
+  );
+}
+
 const NavigationStack = () => {
   const Stack = createNativeStackNavigator();
   const scheme = useColorScheme();
 
   return (
     <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-      <SafeAreaProvider>
+      <SafeAreaProvider style={styles.container}>
         <Stack.Navigator
+          // HEADER
           screenOptions={{
+            headerTitle: () => <Text></Text>,
             // @ts-ignore
-            headerTitle: (props) => <LogoTitle {...props} />,
+            // headerRight: (props) => <SiteMapMenu {...props} />,
+            // @ts-ignore
+            headerLeft: (props) => <LogoTitle {...props} />,
           }}
+          // BODY
         >
           <Stack.Screen
             name="HomeScreen"
@@ -83,8 +105,12 @@ const NavigationStack = () => {
 export default NavigationStack;
 
 const styles = StyleSheet.create({
+  header: {
+    padding: 5,
+  },
+  container: {},
   logo: {
-    width: 80,
-    height: 70,
+    width: 60,
+    height: 40,
   },
 });
