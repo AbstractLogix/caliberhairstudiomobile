@@ -16,15 +16,15 @@ import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
 import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
-import AdminLoginScreen from "./AdminLoginScreen";
 import ProductScreen from "./ProductScreen";
+import LoginNavigation from "./LoginNavigation";
 
 function LogoTitle() {
   const navigation = useNavigation();
 
   return (
     // @ts-ignore
-    <TouchableOpacity onPress={() => navigation.navigate("AdminLoginScreen")}>
+    <TouchableOpacity onPress={() => navigation.navigate("LoginNavigation")}>
       <Image
         style={styles.logo}
         source={require("../assets/caliber_logo_150x150.png")}
@@ -95,7 +95,7 @@ const NavigationStack = () => {
               headerShown: true,
             }}
           />
-          <Stack.Screen name="AdminLoginScreen" component={AdminLoginScreen} />
+          <Stack.Screen name="LoginNavigation" component={LoginNavigation} />
         </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>

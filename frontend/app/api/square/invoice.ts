@@ -10,9 +10,10 @@ const invoicesURL: string = "https://connect.squareup.com/v2/invoices";
 
 const listInvoices = (location_id: string) => {
   const url = invoicesURL + "?location_id=" + location_id;
-  const json = fetchResponse(url);
-  return json;
+  const jsonResponse = fetchResponse(url);
+  return jsonResponse;
 };
+// not sure about this above code ^ 
 // async (location_id: string) => {
 //   try {
 //     const response = await fetch(invoicesURL + "?location_id=" + location_id);
@@ -27,7 +28,11 @@ const listInvoices = (location_id: string) => {
 // Get invoice
 // Retrieves an invoice by invoice ID.
 
-const getInvoice = () => {};
+const getInvoice = (invoice_id: string) => {
+  const url = invoicesURL + "/" + invoice_id;
+  const jsonResponse = fetchResponse(url);
+  return jsonResponse;
+};
 
 const invoice = () => {
   return { listInvoices, getInvoice };
