@@ -4,9 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const ArtistsScreen = () => {
     return (
-        <SafeAreaView>
+        <View>
             <Text>THIS IS THE ARTIST PAGE</Text>
-        </SafeAreaView>
+        </View>
     )
 }
 
