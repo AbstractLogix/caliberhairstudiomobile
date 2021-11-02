@@ -14,7 +14,6 @@ import theme from "../config/theme";
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Login</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
@@ -97,6 +96,9 @@ const AppleLogin = () => {
   );
 };
 const GoogleLogin = () => {};
+
+const FireBaseLogin = () => {};
+
 export default LoginScreen;
 
 const styles = StyleSheet.create({
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "50%",
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.lightBlue,
     borderRadius: 25,
     height: 50,
     alignItems: "center",

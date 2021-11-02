@@ -33,7 +33,7 @@ function LogoTitle() {
   );
 }
 
-function SiteMapMenu() {
+function SideMenu() {
   return (
     // @ts-ignore
     <TouchableOpacity /* onPress={() => navigation.navigate("AdminLoginScreen")}*/
@@ -60,7 +60,7 @@ const NavigationStack = () => {
           screenOptions={{
             headerTitle: () => <Text></Text>,
             // @ts-ignore
-            // headerRight: (props) => <SiteMapMenu {...props} />,
+            // headerRight: (props) => <SideMenu {...props} />,
             // @ts-ignore
             headerLeft: (props) => <LogoTitle {...props} />,
           }}

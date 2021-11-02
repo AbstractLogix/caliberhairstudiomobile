@@ -1,5 +1,13 @@
+// import keys from "../test_secrets";
+import fetchResponse from "./util";
 // Inventory endpoints Square Api
 const inventoryURL: string = "https://connect.squareup.com/v2/inventory/";
+
+const headers = {
+  "Square-Version": "2021-10-20",
+  "Authorization": "Bearer " + "EAAAEBMvSETjM-5SthqI57py7UIzg5q36nMreRfC1SuxFi_aa2PCUwsu7jGIpJ23",
+  "Content-Type": "application/json",
+};
 
 // GET /v2/inventory/{catalog_object_id}
 // Retrieve inventory count
@@ -7,13 +15,15 @@ const inventoryURL: string = "https://connect.squareup.com/v2/inventory/";
 // a given set of Locations.
 
 const getInventoryCount = async (catalog_object_id: string) => {
-  try {
-    const response = await fetch(inventoryURL + catalog_object_id);
-    const json = await response.json();
-    return json.counts;
-  } catch (error) {
-    console.error(error);
-  }
+  fetchResponse(inventoryURL + catalog_object_id, headers);
+
+  // try {
+  //   const response = await fetch(inventoryURL + catalog_object_id);
+  //   const json = await response.json();
+  //   return json.counts;
+  // } catch (error) {
+  //   console.error(error);
+  // }
 };
 
 // GET /v2/inventory/physical-counts/{physical_count_id}
@@ -41,5 +51,7 @@ const batchRetrieveInventoryCounts = () => {};
 const inventory = () => {
   return { getInventoryCount, getInventoryPhysicalCount };
 };
+
+getInventoryCount("o1");
 
 export default inventory;

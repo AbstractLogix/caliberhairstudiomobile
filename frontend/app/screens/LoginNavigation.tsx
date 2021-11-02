@@ -35,7 +35,13 @@ const LoginNavigation = () => {
         />
       ) : (
         // User is signed in
-        <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
+        <Stack.Screen
+          name="DashboardScreen"
+          component={DashboardScreen}
+          options={{
+            title: "Dashboard",
+          }}
+        />
       )}
     </Stack.Navigator>
   );

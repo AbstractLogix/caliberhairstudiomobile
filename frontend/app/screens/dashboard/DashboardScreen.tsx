@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   LineChart,
   BarChart,
@@ -12,13 +11,13 @@ import {
 
 const DashboardScreen = () => {
   return (
-    <SafeAreaProvider>
+    <View style={styles.header}>
       <SafeAreaView style={styles.container}>
         <ProfitLoss />
         <AccountsReceivable />
         <AccountsPayable />
       </SafeAreaView>
-    </SafeAreaProvider>
+    </View>
   );
 };
 
@@ -87,7 +86,8 @@ const AccountsPayable = () => {
 export default DashboardScreen;
 
 const styles = StyleSheet.create({
+  header: {},
   container: {},
   accountsReceivable: {},
-  accountsPayable: {}
+  accountsPayable: {},
 });
