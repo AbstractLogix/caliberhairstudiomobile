@@ -1,11 +1,11 @@
-// import keys from "../test_secrets";
-import fetchResponse from "./util";
+import keys from "../test_secrets.ts";
+import fetchResponse from "./util.ts";
 // Inventory endpoints Square Api
-const inventoryURL: string = "https://connect.squareup.com/v2/inventory/";
+const inventoryURL = "https://connect.squareup.com/v2/inventory/";
 
 const headers = {
   "Square-Version": "2021-10-20",
-  "Authorization": "Bearer " + "EAAAEBMvSETjM-5SthqI57py7UIzg5q36nMreRfC1SuxFi_aa2PCUwsu7jGIpJ23",
+  "Authorization": keys.SQUARE_ACCESS_TOKEN,
   "Content-Type": "application/json",
 };
 
@@ -15,7 +15,8 @@ const headers = {
 // a given set of Locations.
 
 const getInventoryCount = async (catalog_object_id: string) => {
-  fetchResponse(inventoryURL + catalog_object_id, headers);
+  await fetchResponse(inventoryURL + catalog_object_id, headers).then((response) => { return response
+  });
 
   // try {
   //   const response = await fetch(inventoryURL + catalog_object_id);
@@ -52,6 +53,8 @@ const inventory = () => {
   return { getInventoryCount, getInventoryPhysicalCount };
 };
 
-getInventoryCount("o1");
-
+const response = getInventoryCount("o1");
+response.then((result) => {
+  console.log(result);
+})
 export default inventory;

@@ -1,15 +1,13 @@
-import keys from "../test_secrets";
-
 // fetch function
 
 const fetchResponse = async (url: string, headers: {}) => {
-  try {
-    const response = await fetch(url, { headers });
-    const json = await response.json();
-    return json.payload;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await fetch(url, { headers });
+  const json = response.json();
+  json
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => console.log(e));
 };
 
 export default fetchResponse;
