@@ -1,12 +1,9 @@
 // fetch function
 
 const fetchResponse = async (url: string, headers: {}) => {
-  const response = await fetch(url, { headers });
-  const json = response.json();
-  json
-    .then((res) => {
-      console.log(res);
-    })
+  const response = await fetch(url, { headers })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
     .catch((e) => console.log(e));
 };
 
