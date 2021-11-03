@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from "react-native";
 import * as AppleAuthentication from "expo-apple-authentication";
 
@@ -14,9 +15,13 @@ import theme from "../config/theme";
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={require("../assets/caliber_logo_500x500.png")}
+      ></Image>
       <View style={styles.inputView}>
         <TextInput
-          style={styles.inputText}
+          style={styles.textInput}
           placeholder="Email Address"
           placeholderTextColor={theme.colors.black}
           onChangeText={() => login} // expression expected
@@ -25,28 +30,32 @@ const LoginScreen = () => {
       <View style={styles.inputView}>
         <TextInput
           secureTextEntry
-          style={styles.inputText}
+          style={styles.textInput}
           placeholder="Password"
           placeholderTextColor={theme.colors.black}
           onChangeText={() => login}
         />
       </View>
-      <TouchableOpacity style={styles.button}>
-        <Text>Forgot Password?</Text>
+
+      <TouchableOpacity style={styles.forgot_button}>
+        <Text style={styles.textInput}>Forgot Password?</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
-        style={styles.button}
+        style={styles.login_button}
         onPress={() => {
           const email = "";
           const password = "";
           login(email, password);
         }}
       >
-        <Text>Login</Text>
+        <Text style={styles.textInput}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text>Signup</Text>
+
+      <TouchableOpacity style={styles.login_button}>
+        <Text style={styles.textInput}>Signup</Text>
       </TouchableOpacity>
+
       <AppleLogin />
     </View>
   );
@@ -108,28 +117,38 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  inputView: {
-    width: "80%",
-    backgroundColor: theme.colors.white,
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
+  image: {
+    height: 200,
+    width: 200,
+    resizeMode: "contain",
   },
-  inputText: {
+  inputView: {
+    width: "70%",
+    backgroundColor: theme.colors.extraExtraLightGray,
+    borderRadius: 30,
+    height: 45,
+    marginBottom: 20,
+    alignItems: "flex-start",
+  },
+  textInput: {
     height: 50,
+    flex: 1,
+    padding: 10,
+    marginLeft: 20,
     color: theme.colors.black,
   },
-  button: {
-    width: "50%",
+  forgot_button: {
+    height: 30,
+    marginBottom: 30,
+  },
+  login_button: {
+    width: "80%",
     backgroundColor: theme.colors.lightBlue,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
+    marginTop: 5,
     marginBottom: 10,
-    fontSize: 14,
   },
 });
