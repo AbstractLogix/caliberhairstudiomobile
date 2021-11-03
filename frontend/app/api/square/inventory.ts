@@ -10,7 +10,7 @@ const sandBoxInventoryURL = "https://connect.squareupsandbox.com/v2/inventory/";
 // Retrieves the current calculated stock count for a given CatalogObject at
 // a given set of Locations.
 
-const getInventoryCount = (catalog_object_id: string) => {
+export const getInventoryCount = (catalog_object_id: string) => {
   fetchResponse(sandBoxInventoryURL + catalog_object_id, GETHeader);
 };
 
@@ -18,7 +18,7 @@ const getInventoryCount = (catalog_object_id: string) => {
 // Retrieve inventory physical count
 // Returns the InventoryPhysicalCount object with the provided physical_count_id.
 
-const getInventoryPhysicalCount = async (physical_count_id: string) => {
+export const getInventoryPhysicalCount = async (physical_count_id: string) => {
   fetchResponse(
     inventoryURL + "physical-counts/" + physical_count_id,
     GETHeader
@@ -34,12 +34,9 @@ const getInventoryPhysicalCount = async (physical_count_id: string) => {
 // };
 
 // default export func
-const inventory = () => {
+export const inventory = () => {
   return { getInventoryCount, getInventoryPhysicalCount };
 };
 
 // TEST MAIN -- using deno run --allow-net inventory.ts
-const response = getInventoryCount("0"); // {}
-console.log(response); // undefined
-
-export default inventory;
+getInventoryCount("4EDEIDJECZ5NNPQYKXDMGQTP"); // {}
