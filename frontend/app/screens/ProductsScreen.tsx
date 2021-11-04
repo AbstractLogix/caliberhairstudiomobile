@@ -10,49 +10,11 @@ import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
-import theme from "../config/theme";
 
-const products = [
-  {
-    id: "1",
-    title: "Claymore",
-    description:
-      "Strong hold / Natural finish \n What Is Claymore\nA truly exceptional styling clay that is extra tough and gritty. A strong hold and a natural finish creates a semi-matte texture that leaves hair looking rough and ready.\t\nFormulation\nContains a precise blend of naturally occurring kaolin & bentonite clays that actually absorb excess oils.\t\nHow To Use\nFor maximum texture, work a fingerfull between your palms until soft and apply to  blow-dried hair using your fingertips to create a strong separation.\nSmells Like\nClean laundry\nIngredients\nBeeswax/Cera Alba/Cire d'abeille\nKaolin Petrolatum\nAqua (water/eau)\nEthylhexyl Stearate\nHydrogenated Castor Oil\nVP/VA Copolymer Bentonite\nCeteareth-25\nRicinus Communis (Castor) Seed Oil\nPEG-7 Glyceryl Coocoate\nGlycerin\nPEG_10 Sunflower Glycerides\nPVP\nPropelyne Glycol,\nButylene Glycol\nSillica\nFragrance/Parfum\nPhenoxyethanol,\nEthylhexlglycerin Hexyl Cinnamal\nLinalool\nLimonene\nCoumarin",
-    count: 30,
-    image: require("../assets/products/claymore_web_224x224.png"),
-    screen: "ProductScreen",
-  },
-  {
-    id: "2",
-    title: "Dry Grooming Cream",
-    image: require("../assets/products/dry_grooming_cream_224x224.png"),
-    screen: "ProductScreen",
-  },
-  {
-    id: "3",
-    title: "Pomade",
-    image: require("../assets/products/pomade-web_224x224.png"),
-    screen: "ProductScreen",
-  },
-  {
-    id: "4",
-    title: "Primer",
-    image: require("../assets/products/primer_224x224.png"),
-    screen: "ProductScreen",
-  },
-  {
-    id: "5",
-    title: "Super-Dry",
-    image: require("../assets/products/super-dry_512x512.png"),
-    screen: "ProductScreen",
-  },
-  {
-    id: "6",
-    title: "Wash",
-    image: require("../assets/products/wash_224x224.png"),
-    screen: "ProductScreen",
-  },
-];
+import theme from "../config/theme";
+import productData from "../assets/data/productData";
+
+const products = productData;
 
 const ProductsScreen = () => {
   const navigation = useNavigation();
