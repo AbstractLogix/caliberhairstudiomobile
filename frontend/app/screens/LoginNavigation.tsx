@@ -10,7 +10,7 @@ const LoginNavigation = () => {
 
   const state = {
     // should point to secureStore for authentication token to check if admin is logged in
-    userToken: null, // change to enable dashboard for testing
+    userToken: "null", // change to enable dashboard for testing
     isLoading: false,
     isSignout: false,
   };

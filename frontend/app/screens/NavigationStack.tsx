@@ -18,6 +18,7 @@ import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
 import ProductScreen from "./ProductScreen";
 import LoginNavigation from "./LoginNavigation";
+import theme from "../config/theme";
 
 function LogoTitle() {
   const navigation = useNavigation();
@@ -58,7 +59,7 @@ const NavigationStack = () => {
         <Stack.Navigator
           // HEADER
           screenOptions={{
-            headerTitle: () => <Text></Text>,
+            //headerTitle: () => <Text>Test</Text>,
             // @ts-ignore
             // headerRight: (props) => <SideMenu {...props} />,
             // @ts-ignore
@@ -71,6 +72,7 @@ const NavigationStack = () => {
             component={HomeScreen}
             options={{
               headerShown: true,
+              title: "Home",
             }}
           />
           <Stack.Screen
@@ -78,6 +80,7 @@ const NavigationStack = () => {
             component={ProductsScreen}
             options={{
               headerShown: true,
+              title: "Products",
             }}
           />
           <Stack.Screen name="ProductScreen" component={ProductScreen} />
@@ -86,6 +89,7 @@ const NavigationStack = () => {
             component={ArtistsScreen}
             options={{
               headerShown: true,
+              title: "Artists",
             }}
           />
           <Stack.Screen
@@ -93,6 +97,7 @@ const NavigationStack = () => {
             component={GalleryScreen}
             options={{
               headerShown: true,
+              title: "Gallery",
             }}
           />
           <Stack.Screen name="LoginNavigation" component={LoginNavigation} />
@@ -108,7 +113,9 @@ const styles = StyleSheet.create({
   header: {
     padding: 5,
   },
-  container: {},
+  container: {
+    backgroundColor: theme.colors.white,
+  },
   logo: {
     width: 60,
     height: 40,

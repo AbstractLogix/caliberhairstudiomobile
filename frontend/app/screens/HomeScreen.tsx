@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   app_button: {
+    marginTop: 70,
+    flex: 0,
     justifyContent: "center",
-    backgroundColor: theme.colors.extraExtraLightGray,
+    backgroundColor: theme.colors.white,
   },
 });
