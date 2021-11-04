@@ -25,6 +25,16 @@ const Analytics = () => {
   );
 };
 
+// abstraction for building graphs in the future
+// need to create interface for each type of data object that can be passed based on chart type
+const graphBuilder = (title: string, chartType: string, data: any) => {
+  return (
+    <View>
+      <Text>{title}</Text>
+    </View>
+  );
+};
+
 // profit loss
 
 const ProfitLoss = () => {
