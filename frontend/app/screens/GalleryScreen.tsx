@@ -22,13 +22,10 @@ const data = [
   },
 ];
 
-const CarouselItem = ({ item, index } : any) => {
+const CarouselItem = ({ item, index }: any) => {
   return (
     <View style={styles.container} key={index}>
-      <Image
-        source={item.url}
-        style={styles.image}
-      />
+      <Image source={item.url} style={styles.image} />
     </View>
   );
 };

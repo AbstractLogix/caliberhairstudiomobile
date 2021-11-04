@@ -16,7 +16,10 @@ const products = [
   {
     id: "1",
     title: "Claymore",
-    image: require("../assets/products/claymore_web_224x224.png"), // instead of require could be uri
+    description:
+      "Strong hold / Natural finish \n What Is Claymore\nA truly exceptional styling clay that is extra tough and gritty. A strong hold and a natural finish creates a semi-matte texture that leaves hair looking rough and ready.\t\nFormulation\nContains a precise blend of naturally occurring kaolin & bentonite clays that actually absorb excess oils.\t\nHow To Use\nFor maximum texture, work a fingerfull between your palms until soft and apply to  blow-dried hair using your fingertips to create a strong separation.\nSmells Like\nClean laundry\nIngredients\nBeeswax/Cera Alba/Cire d'abeille\nKaolin Petrolatum\nAqua (water/eau)\nEthylhexyl Stearate\nHydrogenated Castor Oil\nVP/VA Copolymer Bentonite\nCeteareth-25\nRicinus Communis (Castor) Seed Oil\nPEG-7 Glyceryl Coocoate\nGlycerin\nPEG_10 Sunflower Glycerides\nPVP\nPropelyne Glycol,\nButylene Glycol\nSillica\nFragrance/Parfum\nPhenoxyethanol,\nEthylhexlglycerin Hexyl Cinnamal\nLinalool\nLimonene\nCoumarin",
+    count: 30,
+    image: require("../assets/products/claymore_web_224x224.png"),
     screen: "ProductScreen",
   },
   {
@@ -61,14 +64,21 @@ const ProductsScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            // @ts-ignore
-            onPress={() => navigation.navigate(item.screen)}
+            onPress={() =>
+              // @ts-ignore
+              navigation.navigate(item.screen, {
+                title: item.title,
+                description: item.description,
+                count: item.count,
+                image: item.image,
+              })
+            }
             style={tw`p-2 pl-6 pb-8 pt-4 bg-white m-2 w-40`}
           >
             <SafeAreaView>
               <Image
                 style={{ width: 120, height: 120, resizeMode: "contain" }}
-                source={item.image} // could also be { uri: item.image }
+                source={item.image}
               />
               <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
               <Icon
