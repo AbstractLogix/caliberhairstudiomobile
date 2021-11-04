@@ -10,7 +10,7 @@ import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
-import colors from "../config/theme";
+import theme from "../config/theme";
 
 const products = [
   {
@@ -21,7 +21,7 @@ const products = [
   },
   {
     id: "2",
-    title: "Dry_Grooming",
+    title: "Dry Grooming Cream",
     image: require("../assets/products/dry_grooming_cream_224x224.png"),
     screen: "ProductScreen",
   },
@@ -54,7 +54,7 @@ const products = [
 const ProductsScreen = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
         numColumns={2}
@@ -63,7 +63,7 @@ const ProductsScreen = () => {
           <TouchableOpacity
             // @ts-ignore
             onPress={() => navigation.navigate(item.screen)}
-            style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-100 m-2 w-40`}
+            style={tw`p-2 pl-6 pb-8 pt-4 bg-white m-2 w-40`}
           >
             <SafeAreaView>
               <Image
@@ -88,10 +88,13 @@ const ProductsScreen = () => {
 export default ProductsScreen;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "colors.white",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // }
+  item: {
+    backgroundColor: theme.colors.extraExtraLightGray,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
