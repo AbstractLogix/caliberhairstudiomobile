@@ -20,7 +20,7 @@ const data = [
   {
     id: "3",
     title: "Gallery",
-    image: require("../assets/profile/chris/chris_profile.jpg"),
+    image: require("../assets/shop/shop_view.jpg"),
     screen: "GalleryScreen",
   },
 ];

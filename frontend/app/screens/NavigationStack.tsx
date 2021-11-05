@@ -19,6 +19,7 @@ import GalleryScreen from "./GalleryScreen";
 import ProductScreen from "./ProductScreen";
 import LoginNavigation from "./LoginNavigation";
 import theme from "../config/theme";
+import PortfolioScreen from "./PortfolioScreen";
 
 function LogoTitle() {
   const navigation = useNavigation();
@@ -90,6 +91,14 @@ const NavigationStack = () => {
             options={{
               headerShown: true,
               title: "Artists",
+            }}
+          />
+          <Stack.Screen
+            name="PortfolioScreen"
+            component={PortfolioScreen}
+            options={{
+              headerShown: true,
+              title: "Portfolios",
             }}
           />
           <Stack.Screen
