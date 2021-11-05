@@ -9,8 +9,6 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Icon } from "react-native-elements";
-import tw from "tailwind-react-native-classnames";
 
 import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
@@ -35,21 +33,6 @@ function LogoTitle() {
   );
 }
 
-function SideMenu() {
-  return (
-    // @ts-ignore
-    <TouchableOpacity /* onPress={() => navigation.navigate("AdminLoginScreen")}*/
-    >
-      <Icon
-        style={tw`p-2 bg-black rounded-full w-10 mt-4`}
-        name="menuunfold"
-        color="white"
-        type="antdesign"
-      />
-    </TouchableOpacity>
-  );
-}
-
 const NavigationStack = () => {
   const Stack = createNativeStackNavigator();
   const scheme = useColorScheme();
@@ -60,11 +43,8 @@ const NavigationStack = () => {
         <Stack.Navigator
           // HEADER
           screenOptions={{
-            //headerTitle: () => <Text>Test</Text>,
             // @ts-ignore
-            // headerRight: (props) => <SideMenu {...props} />,
-            // @ts-ignore
-            headerLeft: (props) => <LogoTitle {...props} />,
+            headerLeft: () => <LogoTitle />,
           }}
           // BODY
         >

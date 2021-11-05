@@ -5,11 +5,32 @@ import * as WebBrowser from "expo-web-browser";
 import NavOptions from "../components/NavOptions";
 import theme from "../config/theme";
 
+const navOptions = [
+  {
+    id: "1",
+    title: "Products",
+    image: require("../assets/products/wash_224x224.png"), // instead of require could be uri
+    screen: "ProductsScreen",
+  },
+  {
+    id: "2",
+    title: "Artists",
+    image: require("../assets/caliber_boys.jpg"),
+    screen: "ArtistsScreen",
+  },
+  {
+    id: "3",
+    title: "Gallery",
+    image: require("../assets/shop/shop_view.jpg"),
+    screen: "GalleryScreen",
+  },
+];
+
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navOptions}>
-        <NavOptions />
+        <NavOptions {...navOptions} />
       </View>
       <View style={styles.app_button}>
         <Button

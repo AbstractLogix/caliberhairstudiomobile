@@ -1,31 +1,17 @@
 import React from "react";
-import { FlatList, TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
+import {
+  FlatList,
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+} from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
-const data = [
-  {
-    id: "1",
-    title: "Products",
-    image: require("../assets/products/wash_224x224.png"), // instead of require could be uri
-    screen: "ProductsScreen",
-  },
-  {
-    id: "2",
-    title: "Artists",
-    image: require("../assets/caliber_boys.jpg"),
-    screen: "ArtistsScreen",
-  },
-  {
-    id: "3",
-    title: "Gallery",
-    image: require("../assets/shop/shop_view.jpg"),
-    screen: "GalleryScreen",
-  },
-];
-
-const NavOptions = () => {
+const NavOptions = (data: any) => {
   const navigation = useNavigation();
 
   return (
@@ -65,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 15,
-  }
+  },
 });
 
 export default NavOptions;
