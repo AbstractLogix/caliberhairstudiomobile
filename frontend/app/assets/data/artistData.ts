@@ -1,5 +1,14 @@
+// Type
+interface Artist {
+  id: string;
+  artist: string;
+  profileImage: {};
+  description: string;
+  screen: string;
+}
+
 const screen = "PortfolioScreen";
-const artists = [
+const artists: Artist[] = [
   {
     id: "1",
     artist: "Chris",

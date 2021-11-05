@@ -1,4 +1,14 @@
-const productData = [
+// Type
+interface Product {
+  id: string;
+  title: string;
+  description: string;
+  count: number;
+  image: {};
+  screen: string;
+}
+
+const productData: Product[] = [
   {
     id: "1",
     title: "Claymore",
