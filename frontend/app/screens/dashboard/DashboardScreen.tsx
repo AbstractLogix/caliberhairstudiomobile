@@ -2,13 +2,37 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import theme from "../../config/theme";
-import Analytics from "../../components/Analytics";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import NavOptions from "../../components/NavOptions";
+
+const data = [
+  {
+    id: "1",
+    title: "Analytics",
+    image: require("../../assets/misc/data_analytics.png"),
+    screen: "AnalyticsScreen",
+  },
+  {
+    id: "2",
+    title: "Notification Manager",
+    image: require("../../assets/misc/notifications_1920.jpg"),
+    screen: "NotificationManagerScreen",
+  },
+  {
+    id: "3",
+    title: "Profile Manager",
+    image: require("../../assets/misc/profile_avatar.png"),
+    screen: "Notification Manager",
+  },
+];
 
 const DashboardScreen = () => {
   return (
-    <View style={styles.container}>
-      <Analytics />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <NavOptions items={data} />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
