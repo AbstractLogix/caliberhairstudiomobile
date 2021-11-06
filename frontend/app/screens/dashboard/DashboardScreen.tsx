@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 
 import theme from "../../config/theme";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -31,12 +31,15 @@ const data = [
     screen: "PhotoGalleryManagerScreen",
   },
 ];
-
+// TODO fix signout button
 const DashboardScreen = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <NavOptions items={data} />
+        <View style={styles.signoutBtn}>
+          <Button title="Sign out" onPress={() => {}} />
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -48,15 +51,12 @@ const styles = StyleSheet.create({
   header: {},
 
   container: {
-    flex: 0,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: theme.colors.white,
   },
+  signoutBtn: {
+    marginBottom: 40,
+  },
 });
-
-const style = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.white,
-  }
-})

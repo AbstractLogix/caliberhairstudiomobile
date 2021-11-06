@@ -207,6 +207,7 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="DashboardScreen"
             component={DashboardScreen}
+            initialParams={AuthContext.Provider}
             options={{
               title: "Dashboard",
             }}
