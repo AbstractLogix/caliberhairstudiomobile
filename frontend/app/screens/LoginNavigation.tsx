@@ -13,6 +13,10 @@ import {
 
 import DashboardScreen from "./dashboard/DashboardScreen";
 import theme from "../config/theme";
+import AnalyticsScreen from "./dashboard/userPages/AnalyticsScreen";
+import NotificationManagerScreen from "./dashboard/userPages/NotificationManagerScreen";
+import ProfileManagerScreen from "./dashboard/userPages/ProfileManagerScreen";
+import PhotoGalleryManagerScreen from "./dashboard/userPages/PhotoGalleryManagerScreen";
 
 // @ts-ignore
 const AuthContext = React.createContext();
@@ -208,6 +212,34 @@ const LoginNavigation = () => {
             }}
           />
         )}
+        <Stack.Screen
+          name="AnalyticsScreen"
+          component={AnalyticsScreen}
+          options={{
+            title: "Analytics",
+          }}
+        />
+        <Stack.Screen
+          name="NotificationManagerScreen"
+          component={NotificationManagerScreen}
+          options={{
+            title: "Notification Manager",
+          }}
+        />
+        <Stack.Screen
+          name="ProfileManagerScreen"
+          component={ProfileManagerScreen}
+          options={{
+            title: "Profile Manager",
+          }}
+        />
+        <Stack.Screen
+          name="PhotoGalleryManagerScreen"
+          component={PhotoGalleryManagerScreen}
+          options={{
+            title: "Photo Gallery Manager",
+          }}
+        />
       </Stack.Navigator>
     </AuthContext.Provider>
   );

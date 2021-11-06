@@ -9,7 +9,7 @@ import {
   StackedBarChart,
 } from "react-native-chart-kit";
 
-const Analytics = () => {
+const AnalyticsScreen = () => {
   return (
     <View>
       <View style={styles.profitLoss}>
@@ -191,7 +191,7 @@ const AccountsPayable = () => {
   );
 };
 
-export default Analytics;
+export default AnalyticsScreen;
 
 const styles = StyleSheet.create({
   profitLoss: {},

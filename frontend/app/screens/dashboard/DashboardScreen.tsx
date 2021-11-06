@@ -22,14 +22,20 @@ const data = [
     id: "3",
     title: "Profile Manager",
     image: require("../../assets/misc/profile_avatar.png"),
-    screen: "Notification Manager",
+    screen: "ProfileManagerScreen",
+  },
+  {
+    id: "4",
+    title: "Photo Gallery Manager",
+    image: require("../../assets/shop/shop_view.jpg"),
+    screen: "PhotoGalleryManagerScreen",
   },
 ];
 
 const DashboardScreen = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <NavOptions items={data} />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -48,3 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
 });
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.white,
+  }
+})
