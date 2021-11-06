@@ -39,7 +39,7 @@ interface NavItem {
   screen: string;
 }
 
-const NavOptions = (props: NavItem[]) => {
+const NavOptions = (data: any) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

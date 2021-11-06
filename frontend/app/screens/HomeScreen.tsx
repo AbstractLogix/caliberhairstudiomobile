@@ -30,7 +30,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navOptions}>
-        <NavOptions {...data}/>
+        <NavOptions data = {data}/>
       </View>
       <View style={styles.app_button}>
         <Button
