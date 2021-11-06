@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import theme from "../../config/theme";
-import Analytics from "./Analytics";
+import Analytics from "../../components/Analytics";
 
 const DashboardScreen = () => {
   return (

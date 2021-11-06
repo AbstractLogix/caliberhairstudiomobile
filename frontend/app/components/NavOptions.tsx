@@ -11,27 +11,6 @@ import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
-const props = [
-  {
-    id: "1",
-    title: "Products",
-    image: require("../assets/products/wash_224x224.png"), // instead of require could be uri
-    screen: "ProductsScreen",
-  },
-  {
-    id: "2",
-    title: "Artists",
-    image: require("../assets/caliber_boys.jpg"),
-    screen: "ArtistsScreen",
-  },
-  {
-    id: "3",
-    title: "Gallery",
-    image: require("../assets/profile/chris/chris_profile.jpg"),
-    screen: "GalleryScreen",
-  },
-];
-
 interface NavItem {
   id: string;
   title: string;
@@ -39,12 +18,16 @@ interface NavItem {
   screen: string;
 }
 
-const NavOptions = (data: any) => {
+interface NavItemProps {
+  items: NavItem[];
+}
+
+const NavOptions = ({ items }: NavItemProps) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <FlatList
-        data={props}
+        data={items}
         numColumns={2}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
