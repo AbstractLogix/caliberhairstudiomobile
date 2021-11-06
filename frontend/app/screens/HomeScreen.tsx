@@ -5,7 +5,7 @@ import * as WebBrowser from "expo-web-browser";
 import NavOptions from "../components/NavOptions";
 import theme from "../config/theme";
 
-const navOptions = [
+const data = [
   {
     id: "1",
     title: "Products",
@@ -21,7 +21,7 @@ const navOptions = [
   {
     id: "3",
     title: "Gallery",
-    image: require("../assets/shop/shop_view.jpg"),
+    image: require("../assets/profile/chris/chris_profile.jpg"),
     screen: "GalleryScreen",
   },
 ];
@@ -30,7 +30,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navOptions}>
-        <NavOptions {...navOptions} />
+        <NavOptions {...data}/>
       </View>
       <View style={styles.app_button}>
         <Button

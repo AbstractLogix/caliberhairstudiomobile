@@ -89,7 +89,11 @@ const NavigationStack = () => {
               title: "Gallery",
             }}
           />
-          <Stack.Screen name="LoginNavigation" component={LoginNavigation} />
+          <Stack.Screen
+            name="LoginNavigation"
+            component={LoginNavigation}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>
