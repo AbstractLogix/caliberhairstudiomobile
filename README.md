@@ -32,6 +32,7 @@ https://user-images.githubusercontent.com/2245068/136293371-48ffad76-718a-4fb5-9
     - Portfolios
 5. Login
 ###### __Auth only__
+- Dashboard
 1. Analytics
 2. Notification Manager
 3. Profile Manager
