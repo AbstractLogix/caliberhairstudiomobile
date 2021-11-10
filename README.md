@@ -24,6 +24,7 @@ https://user-images.githubusercontent.com/2245068/136293371-48ffad76-718a-4fb5-9
 
 
 Screens
+------------
 1.	Home 
 2.	Products
     a. Product info	
@@ -31,16 +32,20 @@ Screens
 4.	Artist
     a.	Portfolios
 5. Login
-
 -- Auth only --
 1. Analytics
 2. Notification Manager
 3. Profile Manager
 4. Photo Gallery Manager 
+------------
 
 ---Instructions---
+
+```
 yarn install
 yarn start
+```
 
 -- notes --
+
 API has only been tested stand alone with deno and requires a square tokens
