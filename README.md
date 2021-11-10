@@ -10,6 +10,7 @@
 5.	Square integration – Catalog ( invoices , inventory ), profit/loss data and inventory count data
 6.	Amazon style suggested items , ratings etc. everything that can improve the customer buying experience
 
+---
 
 ###### __Tech__
 - React Native 
@@ -17,11 +18,14 @@
 -	Tailwind CSS
 -	Firebase
 
+---
+
 ###### __Architecture__
 Serverless mobile application
 
 https://user-images.githubusercontent.com/2245068/136293371-48ffad76-718a-4fb5-9281-70fecccdef72.png
 
+---
 
 ###### __Screens__
 1.	Home 
@@ -38,12 +42,16 @@ https://user-images.githubusercontent.com/2245068/136293371-48ffad76-718a-4fb5-9
 4. Profile Manager
 5. Photo Gallery Manager 
 
+---
+
 ###### __Instructions__
 
 ```
 yarn install
 yarn start
 ```
+
+---
 
 ###### __Notes__
 
