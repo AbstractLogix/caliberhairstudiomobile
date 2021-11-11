@@ -18,5 +18,4 @@ coverage
 __snapshots__
 
 # my_ignore
-notes.txt
 test_secrets.ts

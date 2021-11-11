@@ -1,7 +1,7 @@
 // Deno used for testing hence file extension in import and export funcs
 
 // @ts-ignore
-import keys from "../test_secrets.ts";
+import keys from "./square_secrets";
 
 // fetch function
 export const fetchResponse = async (url: string, headers: {}) => {
