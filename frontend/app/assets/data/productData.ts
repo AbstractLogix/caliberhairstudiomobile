@@ -8,7 +8,7 @@ interface Product {
   screen: string;
 }
 
-const productData: Product[] = [
+const productData = [
   {
     id: "1",
     title: "Claymore",

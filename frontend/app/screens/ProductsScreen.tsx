@@ -1,25 +1,19 @@
 import React from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { FlatList, Text, TouchableOpacity, Image } from "react-native";
 import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
 
-import theme from "../config/theme";
 import productData from "../assets/data/productData";
+import style from "../styles/default_style";
 
 const products = productData;
 
 const ProductsScreen = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={style.container}>
       <FlatList
         data={products}
         numColumns={2}
@@ -58,15 +52,3 @@ const ProductsScreen = () => {
 };
 
 export default ProductsScreen;
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: theme.colors.extraExtraLightGray,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

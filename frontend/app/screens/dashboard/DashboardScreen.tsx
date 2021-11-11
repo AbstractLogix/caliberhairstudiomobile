@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
+import { View, Button } from "react-native";
 
-import theme from "../../config/theme";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import NavOptions from "../../components/NavOptions";
+
+import style from "../../styles/default_style";
 
 const data = [
   {
@@ -35,9 +36,9 @@ const data = [
 const DashboardScreen = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={style.container}>
         <NavOptions items={data} />
-        <View style={styles.signoutBtn}>
+        <View style={style.button_signout}>
           <Button title="Sign out" onPress={() => {}} />
         </View>
       </SafeAreaView>
@@ -46,17 +47,3 @@ const DashboardScreen = () => {
 };
 
 export default DashboardScreen;
-
-const styles = StyleSheet.create({
-  header: {},
-
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.colors.white,
-  },
-  signoutBtn: {
-    marginBottom: 40,
-  },
-});

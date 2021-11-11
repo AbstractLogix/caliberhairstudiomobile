@@ -18,4 +18,5 @@ coverage
 __snapshots__
 
 # my_ignore
-test_secrets.ts
+square_secrets.ts
+firebase_secrets.ts

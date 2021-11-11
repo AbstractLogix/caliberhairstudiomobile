@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, useColorScheme, Text } from "react-native";
+import { Image, useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   DarkTheme,
@@ -16,8 +16,9 @@ import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
 import ProductScreen from "./ProductScreen";
 import LoginNavigation from "./LoginNavigation";
-import theme from "../config/theme";
 import PortfolioScreen from "./PortfolioScreen";
+
+import style from "../styles/default_style";
 
 function LogoTitle() {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ function LogoTitle() {
     // @ts-ignore
     <TouchableOpacity onPress={() => navigation.navigate("LoginNavigation")}>
       <Image
-        style={styles.logo}
+        style={style.logo_navigation}
         source={require("../assets/caliber_logo_150x150.png")}
       />
     </TouchableOpacity>
@@ -39,7 +40,7 @@ const NavigationStack = () => {
 
   return (
     <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-      <SafeAreaProvider style={styles.container}>
+      <SafeAreaProvider>
         <Stack.Navigator
           // HEADER
           screenOptions={{
@@ -101,17 +102,3 @@ const NavigationStack = () => {
 };
 
 export default NavigationStack;
-
-const styles = StyleSheet.create({
-  header: {
-    padding: 5,
-  },
-  container: {
-    backgroundColor: theme.colors.white,
-  },
-  logo: {
-    width: 60,
-    height: 42,
-    resizeMode: "contain",
-  },
-});

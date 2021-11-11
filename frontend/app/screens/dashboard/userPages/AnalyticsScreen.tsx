@@ -12,13 +12,13 @@ import {
 const AnalyticsScreen = () => {
   return (
     <View>
-      <View style={styles.profitLoss}>
+      <View>
         <ProfitLoss />
       </View>
-      <View style={styles.accountsReceivable}>
+      <View>
         <AccountsReceivable />
       </View>
-      <View style={styles.accountsPayable}>
+      <View>
         <AccountsPayable />
       </View>
     </View>
@@ -40,7 +40,7 @@ const graphBuilder = (title: string, chartType: string, data: any) => {
 const ProfitLoss = () => {
   return (
     <View>
-      <Text style={styles.titleText}>Profit/Loss</Text>
+      <Text>Profit/Loss</Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
@@ -92,7 +92,7 @@ const ProfitLoss = () => {
 const AccountsReceivable = () => {
   return (
     <View>
-      <Text style={styles.titleText}>AccountsReceivable</Text>
+      <Text>AccountsReceivable</Text>
       <BarChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
@@ -143,7 +143,7 @@ const AccountsReceivable = () => {
 const AccountsPayable = () => {
   return (
     <View>
-      <Text style={styles.titleText}>AccountsPayable</Text>
+      <Text>AccountsPayable</Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
@@ -192,13 +192,3 @@ const AccountsPayable = () => {
 };
 
 export default AnalyticsScreen;
-
-const styles = StyleSheet.create({
-  profitLoss: {},
-  titleText: {
-    fontSize: 16,
-    fontStyle: "italic",
-  },
-  accountsReceivable: {},
-  accountsPayable: {},
-});

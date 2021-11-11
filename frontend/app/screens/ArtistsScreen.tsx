@@ -1,24 +1,16 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-elements";
 import tw from "tailwind-react-native-classnames";
 import artistData from "../assets/data/artistData";
-import theme from "../config/theme";
-
+import style from "../styles/default_style";
 const artists = artistData;
 
 const ArtistsScreen = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       <FlatList
         data={artists}
         numColumns={2}
@@ -56,13 +48,3 @@ const ArtistsScreen = () => {
 };
 
 export default ArtistsScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: theme.colors.white,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

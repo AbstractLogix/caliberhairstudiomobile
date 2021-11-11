@@ -64,8 +64,7 @@ export default function NotificationManagerScreen() {
         {/*// @ts-ignore */}
         <Text>Body: {notification && notification.request.content.body}</Text>
         <Text>
-          Data:{" "}
-          {/*// @ts-ignore */}
+          Data: {/*// @ts-ignore */}
           {notification && JSON.stringify(notification.request.content.data)}
         </Text>
       </View>
@@ -131,5 +130,3 @@ async function registerForPushNotificationsAsync() {
 
   return token;
 }
-
-const styles = StyleSheet.create({});

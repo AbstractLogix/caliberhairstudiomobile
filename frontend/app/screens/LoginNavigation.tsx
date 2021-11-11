@@ -2,17 +2,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import * as SecureStore from "expo-secure-store";
 import * as AppleAuthentication from "expo-apple-authentication";
-import {
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-} from "react-native";
+import { View, Image, Text, TouchableOpacity, TextInput } from "react-native";
 
 import DashboardScreen from "./dashboard/DashboardScreen";
 import theme from "../config/theme";
+import style from "../styles/default_style";
 import AnalyticsScreen from "./dashboard/userPages/AnalyticsScreen";
 import NotificationManagerScreen from "./dashboard/userPages/NotificationManagerScreen";
 import ProfileManagerScreen from "./dashboard/userPages/ProfileManagerScreen";
@@ -23,7 +17,7 @@ const AuthContext = React.createContext();
 
 const SplashScreen = () => {
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       <Text>LOADING AF...</Text>
     </View>
   );
@@ -37,24 +31,24 @@ const LoginScreen = () => {
   const { signIn } = React.useContext(AuthContext);
 
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       <Image
-        style={styles.image}
+        style={style.image_medium}
         source={require("../assets/caliber_logo_500x500.png")}
       ></Image>
-      <View style={styles.inputView}>
+      <View style={style.inputView}>
         <TextInput
-          style={styles.textInput}
+          style={style.textInput}
           placeholder="Email Address"
           value={email}
           placeholderTextColor={theme.colors.black}
           onChangeText={setEmail} // expression expected
         />
       </View>
-      <View style={styles.inputView}>
+      <View style={style.inputView}>
         <TextInput
           secureTextEntry
-          style={styles.textInput}
+          style={style.textInput}
           placeholder="Password"
           value={password}
           placeholderTextColor={theme.colors.black}
@@ -62,19 +56,19 @@ const LoginScreen = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.forgot_button}>
-        <Text style={styles.textInput}>Forgot Password?</Text>
+      <TouchableOpacity style={style.button_forgot}>
+        <Text style={style.textInput}>Forgot Password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.login_button}
+        style={style.button_large}
         onPress={() => signIn({ email, password })}
       >
-        <Text style={styles.textInput}>Login</Text>
+        <Text style={style.textInput}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.login_button}>
-        <Text style={styles.textInput}>Signup</Text>
+      <TouchableOpacity style={style.button_large}>
+        <Text style={style.textInput}>Signup</Text>
       </TouchableOpacity>
 
       <AppleLogin />
@@ -245,48 +239,5 @@ const LoginNavigation = () => {
     </AuthContext.Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  image: {
-    height: 200,
-    width: 200,
-    resizeMode: "contain",
-  },
-  inputView: {
-    width: "70%",
-    backgroundColor: theme.colors.extraExtraLightGray,
-    borderRadius: 30,
-    height: 45,
-    marginBottom: 20,
-    alignItems: "flex-start",
-  },
-  textInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
-    color: theme.colors.black,
-  },
-  forgot_button: {
-    height: 30,
-    marginBottom: 30,
-  },
-  login_button: {
-    width: "80%",
-    backgroundColor: theme.colors.lightBlue,
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 5,
-    marginBottom: 10,
-  },
-});
 
 export default LoginNavigation;
