@@ -3,15 +3,36 @@ import * as React from "react";
 import * as SecureStore from "expo-secure-store";
 import * as AppleAuthentication from "expo-apple-authentication";
 import { View, Image, Text, TouchableOpacity, TextInput } from "react-native";
+import * as Facebook from "expo-auth-session/providers/facebook";
+import { ResponseType } from "expo-auth-session";
+import { initializeApp } from "firebase/app";
+import * as WebBrowser from 'expo-web-browser';
+import {
+  getAuth,
+  FacebookAuthProvider,
+  signInWithCredential,
+} from "firebase/auth";
 
-import DashboardScreen from "./dashboard/DashboardScreen";
-import theme from "../config/theme";
-import style from "../styles/default_style";
-import AnalyticsScreen from "./dashboard/userPages/AnalyticsScreen";
-import NotificationManagerScreen from "./dashboard/userPages/NotificationManagerScreen";
-import ProfileManagerScreen from "./dashboard/userPages/ProfileManagerScreen";
-import PhotoGalleryManagerScreen from "./dashboard/userPages/PhotoGalleryManagerScreen";
+import DashboardScreen from "./DashboardScreen";
+import theme from "../../config/theme";
+import style from "../../styles/default_style";
+import AnalyticsScreen from "./userPages/AnalyticsScreen";
+import NotificationManagerScreen from "./userPages/NotificationManagerScreen";
+import ProfileManagerScreen from "./userPages/ProfileManagerScreen";
+import PhotoGalleryManagerScreen from "./userPages/PhotoGalleryManagerScreen";
 
+import {
+  firebaseConfig,
+  facebookConfig,
+} from "../../api/firebase/firebase_secrets";
+
+// initalize firebase
+initializeApp(firebaseConfig);
+//Web only: This method should be invoked on the page that the auth popup gets redirected to on web,
+//it'll ensure that authentication is completed properly. On native this does nothing.
+WebBrowser.maybeCompleteAuthSession();
+
+// authorization context
 // @ts-ignore
 const AuthContext = React.createContext();
 
@@ -71,6 +92,7 @@ const LoginScreen = () => {
         <Text style={style.textInput}>Signup</Text>
       </TouchableOpacity>
 
+      <FacebookLogin />
       <AppleLogin />
     </View>
   );
@@ -104,6 +126,40 @@ const AppleLogin = () => {
         }}
       />
     </View>
+  );
+};
+
+// Facebook sign-in
+const FacebookLogin = () => {
+  const app = initializeApp(firebaseConfig);
+  const [request, response, promptAsync] = Facebook.useAuthRequest({
+    responseType: ResponseType.Token,
+    clientId: facebookConfig.appId,
+  });
+
+  React.useEffect(() => {
+    if (response?.type === "success") {
+      const { access_token } = response.params;
+
+      const auth = getAuth();
+      const provider = new FacebookAuthProvider();
+      // @ts-ignore
+      const credential = provider.credential(access_token); // should work ? static member
+      // Sign in with the credential from the Facebook user.
+      signInWithCredential(auth, credential);
+    }
+  }, [response]);
+
+  return (
+    <TouchableOpacity
+      style={style.button_large}
+      disabled={!request}
+      onPress={() => {
+        promptAsync();
+      }}
+    >
+      <Text>Login with Facebook</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -154,7 +210,7 @@ const LoginNavigation = () => {
 
       // After restoring token, we may need to validate it in production apps
 
-      // This will switch to the Appp screen or Auth screen and this loading
+      // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       dispatch({ type: "RESTORE_TOKEN", token: userToken });
     };

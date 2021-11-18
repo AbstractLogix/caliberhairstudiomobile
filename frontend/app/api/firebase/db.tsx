@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 // Optionally import the services that you want to use
 //import {...} from "firebase/auth";
@@ -7,19 +8,8 @@ import { initializeApp } from "firebase/app";
 //import {...} from "firebase/functions";
 //import {...} from "firebase/storage";
 
-import  keys  from "./firebase_secrets";
+import { firebaseConfig } from "./firebase_secrets";
 
 // Initialize Firebase
-const firebaseConfig = {
-  apiKey: keys.FIREBASE_API_KEY, //TODO
-  authDomain: "caliberhairstudiomobile.firebaseapp.com",
-  databaseURL: "https://caliberhairstudiomobile-default-rtdb.firebaseio.com/",
-  projectId: "caliberhairstudiomobile",
-  storageBucket: "project-id.appspot.com", // TODO
-  messagingSenderId: "sender-id", // TODO
-  appId: "app-id", // TODO
-  measurementId: "G-measurement-id", // TODO
-};
-
-initializeApp(firebaseConfig);
-
+// const initializeFirebase = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(initializeFirebase);

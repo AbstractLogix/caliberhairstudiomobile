@@ -15,7 +15,7 @@ import ProductsScreen from "./ProductsScreen";
 import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
 import ProductScreen from "./ProductScreen";
-import LoginNavigation from "./LoginNavigation";
+import LoginNavigation from "./dashboard/LoginNavigation";
 import PortfolioScreen from "./PortfolioScreen";
 
 import style from "../styles/default_style";
