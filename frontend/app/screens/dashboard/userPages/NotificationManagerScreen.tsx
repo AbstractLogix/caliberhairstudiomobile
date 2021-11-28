@@ -2,6 +2,8 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import React, { useState, useEffect, useRef } from "react";
 import { Text, View, Button, Platform, StyleSheet } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
+import styles from "../../../styles/default_style";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -16,6 +18,9 @@ export default function NotificationManagerScreen() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+
+  const [title, setTitle] = React.useState("");
+  const [body, setBody] = React.useState("");
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
@@ -48,44 +53,62 @@ export default function NotificationManagerScreen() {
     };
   }, []);
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text>
+    <View style={styles.container}>
+      <View style={styles.container_gallery}>
+        <Text>Your expo push token: {expoPushToken}</Text>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <Text>
+            {/*// @ts-ignore */}
+            Title: {notification && notification.request.content.title}{" "}
+          </Text>
           {/*// @ts-ignore */}
-          Title: {notification && notification.request.content.title}{" "}
-        </Text>
-        {/*// @ts-ignore */}
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>
-          Data: {/*// @ts-ignore */}
-          {notification && JSON.stringify(notification.request.content.data)}
-        </Text>
+          <Text>Body: {notification && notification.request.content.body}</Text>
+          <Text>
+            Data: {/*// @ts-ignore */}
+            {notification && JSON.stringify(notification.request.content.data)}
+          </Text>
+        </View>
       </View>
-      <Button
-        title="Press to Send Notification"
-        onPress={async () => {
-          await sendPushNotification(expoPushToken);
-        }}
-      />
+
+      <View style={styles.container}>
+        <TextInput
+          placeholder="Enter title text..."
+          value={title}
+          style={styles.textInput}
+          onChangeText={setTitle}
+        ></TextInput>
+        <TextInput
+          placeholder="Enter body text..."
+          value={body}
+          style={styles.textInput}
+          onChangeText={setBody}
+        ></TextInput>
+        <Button
+          title="Press to Send Notification"
+          onPress={async () => {
+            await sendPushNotification(expoPushToken, title, body, {
+              someData: "Some data",
+            });
+          }}
+        />
+      </View>
     </View>
   );
 }
 
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.dev/notifications
-async function sendPushNotification(expoPushToken: string) {
+async function sendPushNotification(
+  expoPushToken: string,
+  title: string,
+  body: string,
+  data: {}
+) {
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: "Original Title",
-    body: "And here is the body!",
-    data: { someData: "goes here" },
+    title: title,
+    body: body,
+    data: data,
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {

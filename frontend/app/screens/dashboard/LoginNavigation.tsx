@@ -4,17 +4,17 @@ import * as SecureStore from "expo-secure-store";
 import * as AppleAuthentication from "expo-apple-authentication";
 import { View, Image, Text, TouchableOpacity, TextInput } from "react-native";
 import * as Facebook from "expo-auth-session/providers/facebook";
-import { ResponseType } from "expo-auth-session";
+import { ResponseType, TokenResponse } from "expo-auth-session";
 import { initializeApp } from "firebase/app";
-import * as WebBrowser from 'expo-web-browser';
+import * as WebBrowser from "expo-web-browser";
 import {
   getAuth,
   FacebookAuthProvider,
   signInWithCredential,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 import DashboardScreen from "./DashboardScreen";
-import theme from "../../config/theme";
 import style from "../../styles/default_style";
 import AnalyticsScreen from "./userPages/AnalyticsScreen";
 import NotificationManagerScreen from "./userPages/NotificationManagerScreen";
@@ -25,6 +25,7 @@ import {
   firebaseConfig,
   facebookConfig,
 } from "../../api/firebase/firebase_secrets";
+import theme from "../../config/theme";
 
 // initalize firebase
 initializeApp(firebaseConfig);
@@ -55,7 +56,7 @@ const LoginScreen = () => {
     <View style={style.container}>
       <Image
         style={style.image_medium}
-        source={require("../assets/caliber_logo_500x500.png")}
+        source={require("../../assets/caliber_logo_500x500.png")}
       ></Image>
       <View style={style.inputView}>
         <TextInput
@@ -77,7 +78,7 @@ const LoginScreen = () => {
         />
       </View>
 
-      <TouchableOpacity style={style.button_forgot}>
+      <TouchableOpacity style={style.button_forgot} onPress={() => {}}>
         <Text style={style.textInput}>Forgot Password?</Text>
       </TouchableOpacity>
 
@@ -92,76 +93,93 @@ const LoginScreen = () => {
         <Text style={style.textInput}>Signup</Text>
       </TouchableOpacity>
 
-      <FacebookLogin />
-      <AppleLogin />
+      {/* <FacebookLogin />
+      <AppleLogin /> */}
     </View>
   );
 };
 
 // Sign-in components
-const AppleLogin = () => {
-  return (
-    <View>
-      <AppleAuthentication.AppleAuthenticationButton
-        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-        cornerRadius={5}
-        style={{ width: 200, height: 44 }}
-        onPress={async () => {
-          try {
-            const credential = await AppleAuthentication.signInAsync({
-              requestedScopes: [
-                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                AppleAuthentication.AppleAuthenticationScope.EMAIL,
-              ],
-            });
-            // signed in
-          } catch (e: any) {
-            if (e.code === "ERR_CANCELED") {
-              // handle that the user canceled the sign-in flow
-            } else {
-              // handle other errors
-            }
-          }
-        }}
-      />
-    </View>
-  );
-};
+// apple sign-in
+// const AppleLogin = () => {
+//   return (
+//     <View>
+//       <AppleAuthentication.AppleAuthenticationButton
+//         buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+//         buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+//         cornerRadius={5}
+//         style={{ width: 200, height: 44 }}
+//         onPress={async () => {
+//           try {
+//             const credential = await AppleAuthentication.signInAsync({
+//               requestedScopes: [
+//                 AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+//                 AppleAuthentication.AppleAuthenticationScope.EMAIL,
+//               ],
+//             });
+//             // signed in
+//           } catch (e: any) {
+//             if (e.code === "ERR_CANCELED") {
+//               // handle that the user canceled the sign-in flow
+//             } else {
+//               // handle other errors
+//             }
+//           }
+//         }}
+//       />
+//     </View>
+//   );
+// };
 
 // Facebook sign-in
-const FacebookLogin = () => {
-  const app = initializeApp(firebaseConfig);
-  const [request, response, promptAsync] = Facebook.useAuthRequest({
-    responseType: ResponseType.Token,
-    clientId: facebookConfig.appId,
-  });
+// const FacebookLogin = () => {
+//   const app = initializeApp(firebaseConfig);
+//   const [request, response, promptAsync] = Facebook.useAuthRequest({
+//     responseType: ResponseType.Token,
+//     clientId: facebookConfig.appId,
+//   });
 
-  React.useEffect(() => {
-    if (response?.type === "success") {
-      const { access_token } = response.params;
+//   React.useEffect(() => {
+//     if (response?.type === "success") {
+//       const { access_token } = response.params;
 
-      const auth = getAuth();
-      const provider = new FacebookAuthProvider();
-      // @ts-ignore
-      const credential = provider.credential(access_token); // should work ? static member
-      // Sign in with the credential from the Facebook user.
-      signInWithCredential(auth, credential);
-    }
-  }, [response]);
+//       const auth = getAuth();
+//       const provider = new FacebookAuthProvider();
+//       // @ts-ignore
+//       const credential = provider.credential(access_token); // should work ? static member
+//       // Sign in with the credential from the Facebook user.
+//       signInWithCredential(auth, credential);
+//     }
+//   }, [response]);
 
-  return (
-    <TouchableOpacity
-      style={style.button_large}
-      disabled={!request}
-      onPress={() => {
-        promptAsync();
-      }}
-    >
-      <Text>Login with Facebook</Text>
-    </TouchableOpacity>
-  );
-};
+//   return (
+//     <TouchableOpacity
+//       style={style.button_large}
+//       disabled={!request}
+//       onPress={() => {
+//         promptAsync();
+//       }}
+//     >
+//       <Text>Login with Facebook</Text>
+//     </TouchableOpacity>
+//   );
+// };
+
+// email and pass firebase
+// const firebaseLoginDefault = async (email: string, password: string) => {
+//   const auth = getAuth();
+//   const token = await signInWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//       // Signed in
+//       //@ts-ignore DANGEROUS!!!!
+//       SecureStore.setItemAsync("userToken", userCredential.user.getIdToken);
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//     });
+//   return token;
+// };
 
 const LoginNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -225,7 +243,26 @@ const LoginNavigation = () => {
         // and get a token. We also need to handle errors if sign in failed.
         // after getting the token, we need to persist the token using 'SecureStore'
         // using a dummy token for now
-        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+        // const token = firebaseLoginDefault(data.email, data.password); // returns undefined
+        console.log("FUNCTION RAN"); // REMOVE !!!!
+
+        const auth = getAuth();
+        let token;
+        signInWithEmailAndPassword(auth, data.email, data.password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user);
+            //return (token = userCredential.user.getIdToken);
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+
+        //await SecureStore.setItemAsync("userToken", token);
+        dispatch({ type: "SIGN_IN", token: token });
       },
       signOut: () => dispatch({ type: "SIGN_OUT" }),
       signUp: async (data: any) => {
@@ -235,7 +272,10 @@ const LoginNavigation = () => {
     }),
     []
   );
-
+  if (state.isLoading) {
+    // we havent finished checking for user token yet.
+    return <SplashScreen />;
+  }
   return (
     <AuthContext.Provider value={authContext}>
       <Stack.Navigator>
@@ -257,7 +297,7 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="DashboardScreen"
             component={DashboardScreen}
-            initialParams={AuthContext.Provider}
+            initialParams={authContext}
             options={{
               title: "Dashboard",
             }}
@@ -266,6 +306,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="AnalyticsScreen"
           component={AnalyticsScreen}
+          initialParams={authContext}
           options={{
             title: "Analytics",
           }}
@@ -273,6 +314,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="NotificationManagerScreen"
           component={NotificationManagerScreen}
+          initialParams={authContext}
           options={{
             title: "Notification Manager",
           }}
@@ -280,6 +322,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="ProfileManagerScreen"
           component={ProfileManagerScreen}
+          initialParams={authContext}
           options={{
             title: "Profile Manager",
           }}
@@ -287,6 +330,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="PhotoGalleryManagerScreen"
           component={PhotoGalleryManagerScreen}
+          initialParams={authContext}
           options={{
             title: "Photo Gallery Manager",
           }}

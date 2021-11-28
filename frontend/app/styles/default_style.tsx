@@ -35,7 +35,6 @@ const default_style = StyleSheet.create({
   },
   button_apt: {
     marginTop: 70,
-    flex: 0,
     justifyContent: "center",
     backgroundColor: theme.colors.white,
   },
@@ -52,7 +51,6 @@ const default_style = StyleSheet.create({
   },
   textInput: {
     height: 50,
-    flex: 1,
     padding: 10,
     marginLeft: 20,
     color: theme.colors.black,
