@@ -54,44 +54,23 @@ export default function NotificationManagerScreen() {
   }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.container_gallery}>
-        <Text>Your expo push token: {expoPushToken}</Text>
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Text>
-            {/*// @ts-ignore */}
-            Title: {notification && notification.request.content.title}{" "}
-          </Text>
-          {/*// @ts-ignore */}
-          <Text>Body: {notification && notification.request.content.body}</Text>
-          <Text>
-            Data: {/*// @ts-ignore */}
-            {notification && JSON.stringify(notification.request.content.data)}
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.container}>
-        <TextInput
-          placeholder="Enter title text..."
-          value={title}
-          style={styles.textInput}
-          onChangeText={setTitle}
-        ></TextInput>
+      <View style={styles.inputView}>
         <TextInput
           placeholder="Enter body text..."
           value={body}
           style={styles.textInput}
           onChangeText={setBody}
         ></TextInput>
-        <Button
-          title="Press to Send Notification"
-          onPress={async () => {
-            await sendPushNotification(expoPushToken, title, body, {
-              someData: "Some data",
-            });
-          }}
-        />
       </View>
+
+      <Button
+        title="Press to Send Notification"
+        onPress={async () => {
+          await sendPushNotification(expoPushToken, "Caliber Hair Studio", body, {
+            someData: "Some data",
+          });
+        }}
+      />
     </View>
   );
 }

@@ -47,7 +47,6 @@ const default_style = StyleSheet.create({
     borderRadius: 30,
     height: 45,
     marginBottom: 20,
-    alignItems: "flex-start",
   },
   textInput: {
     height: 50,

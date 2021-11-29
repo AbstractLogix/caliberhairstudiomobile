@@ -2,7 +2,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import * as SecureStore from "expo-secure-store";
 import * as AppleAuthentication from "expo-apple-authentication";
-import { View, Image, Text, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Button,
+} from "react-native";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import { ResponseType, TokenResponse } from "expo-auth-session";
 import { initializeApp } from "firebase/app";
@@ -12,9 +19,9 @@ import {
   FacebookAuthProvider,
   signInWithCredential,
   signInWithEmailAndPassword,
+  UserCredential,
 } from "firebase/auth";
 
-import DashboardScreen from "./DashboardScreen";
 import style from "../../styles/default_style";
 import AnalyticsScreen from "./userPages/AnalyticsScreen";
 import NotificationManagerScreen from "./userPages/NotificationManagerScreen";
@@ -26,9 +33,12 @@ import {
   facebookConfig,
 } from "../../api/firebase/firebase_secrets";
 import theme from "../../config/theme";
+import NavOptions from "../../components/NavOptions";
+import { dashboardNavData } from "../../assets/data/dashboardNavData";
 
 // initalize firebase
 initializeApp(firebaseConfig);
+
 //Web only: This method should be invoked on the page that the auth popup gets redirected to on web,
 //it'll ensure that authentication is completed properly. On native this does nothing.
 WebBrowser.maybeCompleteAuthSession();
@@ -41,6 +51,20 @@ const SplashScreen = () => {
   return (
     <View style={style.container}>
       <Text>LOADING AF...</Text>
+    </View>
+  );
+};
+
+const DashboardScreen = () => {
+  // @ts-ignore
+  const { signOut } = React.useContext(AuthContext);
+
+  return (
+    <View style={style.container}>
+      <NavOptions items={dashboardNavData} />
+      <View style={style.button_signout}>
+        <Button title="Sign out" onPress={signOut} />
+      </View>
     </View>
   );
 };
@@ -166,20 +190,24 @@ const LoginScreen = () => {
 // };
 
 // email and pass firebase
-// const firebaseLoginDefault = async (email: string, password: string) => {
-//   const auth = getAuth();
-//   const token = await signInWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//       // Signed in
-//       //@ts-ignore DANGEROUS!!!!
-//       SecureStore.setItemAsync("userToken", userCredential.user.getIdToken);
-//     })
-//     .catch((error) => {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//     });
-//   return token;
-// };
+const firebaseLoginDefault = async (email: string, password: string) => {
+  const auth = getAuth();
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      return SecureStore.setItemAsync(
+        "userToken",
+        // @ts-ignore
+        userCredential.user.getIdToken()
+      );
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+};
 
 const LoginNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -244,27 +272,16 @@ const LoginNavigation = () => {
         // after getting the token, we need to persist the token using 'SecureStore'
         // using a dummy token for now
         // const token = firebaseLoginDefault(data.email, data.password); // returns undefined
-        console.log("FUNCTION RAN"); // REMOVE !!!!
-
-        const auth = getAuth();
-        let token;
-        signInWithEmailAndPassword(auth, data.email, data.password)
-          .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log(user);
-            //return (token = userCredential.user.getIdToken);
-            // ...
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-          });
-
+        console.log("SIGN IN FUNC RAN"); // REMOVE !!!!
+        firebaseLoginDefault(data.email, data.password);
+        console.log(SecureStore.getItemAsync("userToken"));
         //await SecureStore.setItemAsync("userToken", token);
-        dispatch({ type: "SIGN_IN", token: token });
+        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
       },
-      signOut: () => dispatch({ type: "SIGN_OUT" }),
+      signOut: () => {
+        console.log("signing out func called");
+        dispatch({ type: "SIGN_OUT" });
+      },
       signUp: async (data: any) => {
         // Another dummy token
         dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
@@ -284,7 +301,7 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
-            initialParams={authContext}
+            //initialParams={authContext}
             options={{
               title: "Sign in",
               // When logging out, a pop animation feels intuitive
@@ -297,7 +314,7 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="DashboardScreen"
             component={DashboardScreen}
-            initialParams={authContext}
+            //initialParams={authContext}
             options={{
               title: "Dashboard",
             }}
@@ -306,7 +323,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="AnalyticsScreen"
           component={AnalyticsScreen}
-          initialParams={authContext}
+          //initialParams={authContext}
           options={{
             title: "Analytics",
           }}
@@ -314,7 +331,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="NotificationManagerScreen"
           component={NotificationManagerScreen}
-          initialParams={authContext}
+          //initialParams={authContext}
           options={{
             title: "Notification Manager",
           }}
@@ -322,7 +339,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="ProfileManagerScreen"
           component={ProfileManagerScreen}
-          initialParams={authContext}
+          //initialParams={authContext}
           options={{
             title: "Profile Manager",
           }}
@@ -330,7 +347,7 @@ const LoginNavigation = () => {
         <Stack.Screen
           name="PhotoGalleryManagerScreen"
           component={PhotoGalleryManagerScreen}
-          initialParams={authContext}
+          //initialParams={authContext}
           options={{
             title: "Photo Gallery Manager",
           }}
