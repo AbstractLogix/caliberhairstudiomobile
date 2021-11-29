@@ -210,7 +210,6 @@ const firebaseLoginDefault = async (email: string, password: string) => {
   await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      
       SecureStore.setItemAsync(
         "userToken",
         // @ts-ignore
@@ -245,6 +244,7 @@ const firebaseSignUp = (email: string, password: string) => {
       // Signed in automatically after creation of account
       const user = userCredential.user;
       console.log("Account created and user " + user + "logged in...");
+      SecureStore.setItemAsync("userToken", JSON.stringify(userCredential.user.getIdToken()))
     })
     .catch((error) => {
       errorToString(error);
@@ -309,10 +309,10 @@ const LoginNavigation = () => {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data: any) => {
-        const circuit = await  firebaseLoginDefault(data.email, data.password);
+        const circuit = await firebaseLoginDefault(data.email, data.password);
         if (circuit) {
-          SecureStore.getItemAsync("userToken");
-          dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+          const token = SecureStore.getItemAsync("userToken");
+          dispatch({ type: "SIGN_IN", token: token });
         }
       },
       signOut: () => {

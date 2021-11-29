@@ -42,16 +42,17 @@ const default_style = StyleSheet.create({
     margin: 40,
   },
   inputView: {
-    width: "70%",
+    width: "80%",
     backgroundColor: theme.colors.extraExtraLightGray,
     borderRadius: 30,
-    height: 45,
+    height: 50,
     marginBottom: 20,
   },
   textInput: {
     height: 50,
     padding: 10,
     marginLeft: 20,
+    fontSize: 16,
     color: theme.colors.black,
   },
   image_small: {
