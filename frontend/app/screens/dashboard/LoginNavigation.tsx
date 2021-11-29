@@ -20,6 +20,8 @@ import {
   signInWithCredential,
   signInWithEmailAndPassword,
   UserCredential,
+  signOut,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import style from "../../styles/default_style";
@@ -189,23 +191,63 @@ const LoginScreen = () => {
 //   );
 // };
 
-// email and pass firebase
+// error util func
+const errorToString = (error: any) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log(
+    "Sign up failed due to error code: " +
+      errorCode +
+      ". Error message: " +
+      errorMessage
+  );
+};
+
+// Firebase sign-out
 const firebaseLoginDefault = async (email: string, password: string) => {
   const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
+  let circuit = false;
+  await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      return SecureStore.setItemAsync(
+      
+      SecureStore.setItemAsync(
         "userToken",
         // @ts-ignore
-        userCredential.user.getIdToken()
+        JSON.stringify(userCredential.user.getIdToken())
       );
+      circuit = true;
     })
     .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
+      errorToString(error);
+    });
+  return circuit;
+};
+
+// Firebase Sign out func
+const firebaseSignout = () => {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      console.log("Sign-out successful!!!!");
+    })
+    .catch((error) => {
+      errorToString(error);
+    });
+};
+
+// Firebase Sign up func
+const firebaseSignUp = (email: string, password: string) => {
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in automatically after creation of account
+      const user = userCredential.user;
+      console.log("Account created and user " + user + "logged in...");
+    })
+    .catch((error) => {
+      errorToString(error);
     });
 };
 
@@ -267,19 +309,15 @@ const LoginNavigation = () => {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data: any) => {
-        // In a production app, we need to send some data (usually username, password) to server
-        // and get a token. We also need to handle errors if sign in failed.
-        // after getting the token, we need to persist the token using 'SecureStore'
-        // using a dummy token for now
-        // const token = firebaseLoginDefault(data.email, data.password); // returns undefined
-        console.log("SIGN IN FUNC RAN"); // REMOVE !!!!
-        firebaseLoginDefault(data.email, data.password);
-        console.log(SecureStore.getItemAsync("userToken"));
-        //await SecureStore.setItemAsync("userToken", token);
-        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+        const circuit = await  firebaseLoginDefault(data.email, data.password);
+        if (circuit) {
+          SecureStore.getItemAsync("userToken");
+          dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+        }
       },
       signOut: () => {
-        console.log("signing out func called");
+        firebaseSignout();
+        SecureStore.deleteItemAsync("userToken");
         dispatch({ type: "SIGN_OUT" });
       },
       signUp: async (data: any) => {
