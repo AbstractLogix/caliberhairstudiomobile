@@ -22,6 +22,7 @@ const ArtistsScreen = () => {
               navigation.navigate(item.screen, {
                 artist: item.artist,
                 profileImage: item.profileImage,
+                portfolio: item.portfolio,
                 description: item.description,
               })
             }
@@ -30,7 +31,7 @@ const ArtistsScreen = () => {
             <View>
               <Image
                 style={{ width: 120, height: 120, resizeMode: "contain" }}
-                source={item.profileImage} // could also be { uri: item.image }
+                source={item.profileImage}
               />
               <Text style={tw`mt-2 text-lg font-semibold`}>{item.artist}</Text>
               <Icon
@@ -38,6 +39,7 @@ const ArtistsScreen = () => {
                 name="arrowright"
                 color="white"
                 type="antdesign"
+                tvParallaxProperties={undefined}
               />
             </View>
           </TouchableOpacity>

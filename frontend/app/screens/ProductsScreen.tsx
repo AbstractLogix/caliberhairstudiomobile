@@ -26,6 +26,7 @@ const ProductsScreen = () => {
                 title: item.title,
                 description: item.description,
                 count: item.count,
+                price: item.price,
                 image: item.image,
               })
             }
@@ -42,6 +43,7 @@ const ProductsScreen = () => {
                 name="arrowright"
                 color="white"
                 type="antdesign"
+                tvParallaxProperties={undefined} // For apple TV
               />
             </SafeAreaView>
           </TouchableOpacity>

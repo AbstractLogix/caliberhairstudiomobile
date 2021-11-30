@@ -329,6 +329,7 @@ const LoginNavigation = () => {
   );
   if (state.isLoading) {
     // we havent finished checking for user token yet.
+    // Usually done by checking if a valid token exists
     return <SplashScreen />;
   }
   return (

@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { View, Image, StyleSheet, Dimensions } from "react-native";
 import CarouselComp from "react-native-snap-carousel";
-import theme from "../config/theme";
+import styles from "../styles/default_style";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
+
 const data = [
   {
     id: 0,
@@ -24,8 +25,8 @@ const data = [
 
 const CarouselItem = ({ item, index }: any) => {
   return (
-    <View style={styles.container} key={index}>
-      <Image source={item.url} style={styles.image} />
+    <View style={styles.container_carousel} key={index}>
+      <Image source={item.url} style={styles.image_carousel} />
     </View>
   );
 };
@@ -44,7 +45,7 @@ const Carousel = () => {
   return (
     <View>
       <CarouselComp
-        layout="tinder"
+        layout="stack"
         layoutCardOffset={9}
         ref={isCarousel}
         data={data}
@@ -56,17 +57,4 @@ const Carousel = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  image: {
-    width: ITEM_WIDTH,
-    height: 300,
-  },
-  container: {
-    backgroundColor: theme.colors.white,
-    borderRadius: 8,
-    width: ITEM_WIDTH,
-    paddingTop: "50%",
-    elevation: 7,
-  },
-});
 export default GalleryScreen;

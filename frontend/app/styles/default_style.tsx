@@ -1,5 +1,8 @@
 import theme from "../config/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+
+const SLIDER_WIDTH = Dimensions.get("window").width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 
 const default_style = StyleSheet.create({
   container: {
@@ -13,11 +16,17 @@ const default_style = StyleSheet.create({
     padding: 15,
     backgroundColor: theme.colors.white,
   },
-  container_gallery: {},
   logo_navigation: {
     width: 60,
     height: 42,
     resizeMode: "contain",
+  },
+  container_carousel: {
+    backgroundColor: theme.colors.white,
+    borderRadius: 8,
+    width: ITEM_WIDTH,
+    paddingTop: "50%",
+    elevation: 7,
   },
   button_large: {
     width: "80%",
@@ -55,6 +64,10 @@ const default_style = StyleSheet.create({
     fontSize: 16,
     color: theme.colors.black,
   },
+  image_carousel: {
+    width: ITEM_WIDTH,
+    height: 300,
+  },
   image_small: {
     width: 150,
     height: 150,
@@ -67,10 +80,12 @@ const default_style = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 30,
   },
   description: {
-    fontSize: 14,
+    fontSize: 15,
+    fontFamily: "Verdana",
+    padding: 10,
   },
 });
 

@@ -15,6 +15,14 @@ const artists = [
     title: "Chris",
     image: require("../profile/chris/chris_profile.jpg"),
     profileImage: require("../profile/chris/chris_profile.jpg"),
+    portfolio: [
+      {
+        id: 0, url: require("../profile/chris/chris_profile.jpg")
+      },
+      {
+        id: 1, url: require("../profile/chris/chris_profile.jpg")
+      }
+    ],
     description: "",
     screen: screen,
   },
