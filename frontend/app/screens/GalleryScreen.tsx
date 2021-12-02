@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Image, Dimensions } from "react-native";
 import CarouselComp from "react-native-snap-carousel";
 import styles from "../styles/default_style";
 

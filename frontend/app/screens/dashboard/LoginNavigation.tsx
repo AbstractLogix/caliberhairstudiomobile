@@ -239,16 +239,22 @@ const firebaseSignout = () => {
 // Firebase Sign up func
 const firebaseSignUp = (email: string, password: string) => {
   const auth = getAuth();
+  let circuit = false;
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in automatically after creation of account
       const user = userCredential.user;
       console.log("Account created and user " + user + "logged in...");
-      SecureStore.setItemAsync("userToken", JSON.stringify(userCredential.user.getIdToken()))
+      SecureStore.setItemAsync(
+        "userToken",
+        JSON.stringify(userCredential.user.getIdToken())
+      );
+      circuit = true;
     })
     .catch((error) => {
       errorToString(error);
     });
+  return circuit;
 };
 
 const LoginNavigation = () => {
@@ -322,7 +328,11 @@ const LoginNavigation = () => {
       },
       signUp: async (data: any) => {
         // Another dummy token
-        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+        const circuit = await firebaseSignUp(data.email, data.password);
+        if (circuit) {
+          const token = SecureStore.getItemAsync("userToken");
+          dispatch({ type: "SIGN_IN", token: token });
+        }
       },
     }),
     []

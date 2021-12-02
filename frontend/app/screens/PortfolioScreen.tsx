@@ -6,6 +6,7 @@ import style from "../styles/default_style";
 
 const PortfolioScreen = ({ route }: any) => {
   const { artist, profileImage, description, portfolio } = route.params;
+  console.log(portfolio);
   return (
     <View style={style.container}>
       <View>
@@ -14,7 +15,7 @@ const PortfolioScreen = ({ route }: any) => {
         <Image source={profileImage} style={style.image_small} />
         <Text>ellos</Text>
       </View>
-      <Carousel data={portfolio}></Carousel>
+      {/* <Carousel data={portfolio}></Carousel> */}
     </View>
   );
 };

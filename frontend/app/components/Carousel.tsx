@@ -9,12 +9,12 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 const CarouselItem = ({ item, index }: any) => {
   return (
     <View style={styles.container_carousel} key={index}>
-      <Image style={styles.image_small} source={item.url} />
+      <Image source={item.url} style={styles.image_carousel} />
     </View>
   );
 };
 
-const Carousel = (data: any) => {
+const Carousel = (data: {}[]) => {
   const isCarousel = useRef(null);
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, useColorScheme } from "react-native";
+import { Image, Pressable, useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   DarkTheme,
@@ -8,7 +8,6 @@ import {
   useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
@@ -25,12 +24,12 @@ function LogoTitle() {
 
   return (
     // @ts-ignore
-    <TouchableOpacity onPress={() => navigation.navigate("LoginNavigation")}>
+    <Pressable onLongPress={() => navigation.navigate("LoginNavigation")}>
       <Image
         style={style.logo_navigation}
         source={require("../assets/caliber_logo_150x150.png")}
       />
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
