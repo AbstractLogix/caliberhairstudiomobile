@@ -39,6 +39,7 @@ const NavOptions = ({ items }: NavItemProps) => {
               name="arrowright"
               color="white"
               type="antdesign"
+              tvParallaxProperties={undefined}
             />
           </View>
         </TouchableOpacity>
