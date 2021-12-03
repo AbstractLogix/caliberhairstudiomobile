@@ -65,7 +65,6 @@ export async function getArtist(db: Firestore, artistID: string) {
     }
 } 
 
-getAllArtists(db);
 
 
 
