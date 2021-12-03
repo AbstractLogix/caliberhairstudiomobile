@@ -36,22 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.addReview = exports.getArtist = exports.getAllArtists = exports.addArtist = void 0;
 var app_1 = require("firebase/app");
 var firestore_1 = require("firebase/firestore");
-// Optionally import the services that you want to use
-//import {...} from "firebase/auth";
-//import {...} from "firebase/database";
-// import { doc, getFirestore, setDoc } from "firebase/firestore";
-//import {...} from "firebase/functions";
-//import {...} from "firebase/storage";
+// firebase config import
 var firebase_secrets_1 = require("./firebase_secrets");
-// Initialize Firebase
-// const initializeFirebase = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(initializeFirebase);
 // initalize firebase
 var Firebase = (0, app_1.initializeApp)(firebase_secrets_1.firebaseConfig);
 var db = (0, firestore_1.getFirestore)(Firebase);
-// function to add artists to the artist collection
+// function to add artists to the collection of artists
 function addArtist(artistName, artistBio) {
     return __awaiter(this, void 0, void 0, function () {
         var error_1;
@@ -75,8 +68,9 @@ function addArtist(artistName, artistBio) {
         });
     });
 }
+exports.addArtist = addArtist;
 // Get a list of artists from firestore
-function getArtists(db) {
+function getAllArtists(db) {
     return __awaiter(this, void 0, void 0, function () {
         var q, querySnapshot;
         return __generator(this, function (_a) {
@@ -90,15 +84,59 @@ function getArtists(db) {
                         // doc.data() is never undefined for query doc snapshots
                         console.log(doc.id, " => ", doc.data());
                     });
+                    return [2 /*return*/, querySnapshot];
+            }
+        });
+    });
+}
+exports.getAllArtists = getAllArtists;
+// Get a single artist from firestore
+function getArtist(db, artistID) {
+    return __awaiter(this, void 0, void 0, function () {
+        var docRef, docSnap;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    docRef = (0, firestore_1.doc)(db, "artists", artistID);
+                    return [4 /*yield*/, (0, firestore_1.getDoc)(docRef)];
+                case 1:
+                    docSnap = _a.sent();
+                    if (docSnap.exists()) {
+                        console.log("Document data:", docSnap.data());
+                        return [2 /*return*/, docSnap];
+                    }
+                    else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                    }
                     return [2 /*return*/];
             }
         });
     });
 }
-// Loads chat messages history and listens for upcoming ones.
-function loadArtists() {
-    // Create the query to load the last 12 messages and listen for new ones.
-    var recentMessagesQuery = (0, firestore_1.query)((0, firestore_1.collection)((0, firestore_1.getFirestore)(), 'artists'), (0, firestore_1.orderBy)('timestamp', 'desc'), (0, firestore_1.limit)(12));
-    return recentMessagesQuery;
+exports.getArtist = getArtist;
+function addReview(rating, content) {
+    return __awaiter(this, void 0, void 0, function () {
+        var error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, (0, firestore_1.addDoc)((0, firestore_1.collection)(db, 'artists/brianmartinez/reviews'), {
+                            rating: rating,
+                            content: content
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error('Error writing new message to Firebase Database', error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
-getArtists(db);
+exports.addReview = addReview;
+addReview(4, "1234123412341");

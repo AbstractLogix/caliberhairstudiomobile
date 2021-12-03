@@ -15,6 +15,7 @@ import {
   doc,
   where,
   serverTimestamp,} from 'firebase/firestore';
+import artists from "../../assets/data/artistData";
 // firebase config import
 import { firebaseConfig } from "./firebase_secrets";
 
@@ -65,7 +66,19 @@ export async function getArtist(db: Firestore, artistID: string) {
     }
 } 
 
-getAllArtists(db);
+export async function addReview(artistID: string, rating: number, content: string) {
+
+  // Add a new message entry to the Firebase database.
+  try {
+    await addDoc(collection(db, 'artists/' + artistID +'/reviews'), {
+      rating: rating,
+      content: content,
+    });
+  }
+  catch(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  }
+}
 
 
 
