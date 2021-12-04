@@ -12,6 +12,7 @@ import {
   onSnapshot,
   setDoc,
   updateDoc,
+  runTransaction,
   doc,
   where,
   serverTimestamp,} from 'firebase/firestore';
@@ -39,7 +40,7 @@ export async function addArtist(artistName: string, artistBio: string) {
   }
 
 // Get a list of artists from firestore
-export async function getAllArtists(db: Firestore) {
+export async function getAllArtists() {
 
   const q = query(collection(db, "artists"), );
 
@@ -52,7 +53,7 @@ export async function getAllArtists(db: Firestore) {
 }
 
 // Get a single artist from firestore
-export async function getArtist(db: Firestore, artistID: string) {
+export async function getArtist(artistID: string) {
 
     const docRef = doc(db, "artists", artistID);
     const docSnap = await getDoc(docRef);
@@ -66,20 +67,56 @@ export async function getArtist(db: Firestore, artistID: string) {
     }
 } 
 
-export async function addReview(artistID: string, rating: number, content: string) {
+export async function addArtistReview(artistID: string, customerName: string, rating: number, content: string) {
 
-  // Add a new message entry to the Firebase database.
+  // Add a new review entry to the Firebase database.
   try {
     await addDoc(collection(db, 'artists/' + artistID +'/reviews'), {
+      customer: customerName,
       rating: rating,
       content: content,
     });
   }
   catch(error) {
-    console.error('Error writing new message to Firebase Database', error);
+    console.error('Error writing new review to Firebase Database', error);
   }
 }
 
+export async function addCustomer(customerID: string, name: string, phoneNumber: string) {
 
+  // Add a new customer entry to the Firebase database.
+  try {
+    await addDoc(collection(db, 'customers'), {
+      name: name,
+      phoneNumber: phoneNumber,
+    });
+  }
+  catch(error) {
+    console.error('Error writing new customer to Firebase Database', error);
+  }
+}
 
-    
+// this function returns a querysnapshot of all apointments that can be iterated through.
+export async function getAllappointments(){
+  const q = query(collection(db, "appointments"), );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });
+  return querySnapshot;
+}
+
+export async function addNewProduct(productID: string, name: string, cost: number, stock: number) {
+  // Add a new item entry to the Firebase database.
+  try {
+    await setDoc(doc(db, 'products', productID), {
+      name: name,
+      cost: cost,
+      stock: stock
+    });
+  }
+  catch(error) {
+    console.error('Error writing new product to Firebase Database', error);
+  }
+}
+
