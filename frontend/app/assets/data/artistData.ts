@@ -85,26 +85,26 @@ const artists: Artist[] = [
     description:
       "Marcelo really be out there doing his best and stuff... I mean, he's a great guy.",
     portfolio: [
-      // {
-      //   id: 0,
-      //   image: require("../profile/marcelo/portfolio/cut1.jpg"),
-      // },
-      // {
-      //   id: 1,
-      //   image: require("../profile/marcelo/portfolio/cut2.jpg"),
-      // },
-      // {
-      //   id: 2,
-      //   image: require("../profile/marcelo/portfolio/cut3.jpg"),
-      // },
-      // {
-      //   id: 3,
-      //   image: require("../profile/marcelo/portfolio/cut4.jpg"),
-      // },
-      // {
-      //   id: 4,
-      //   image: require("../profile/marcelo/portfolio/cut5.jpg"),
-      // },
+      {
+        id: 0,
+        image: require("../profile/marcelo/portfolio/cut1.jpeg"),
+      },
+      {
+        id: 1,
+        image: require("../profile/marcelo/portfolio/cut2.jpg"),
+      },
+      {
+        id: 2,
+        image: require("../profile/marcelo/portfolio/cut3.jpg"),
+      },
+      {
+        id: 3,
+        image: require("../profile/marcelo/portfolio/cut4.jpg"),
+      },
+      {
+        id: 4,
+        image: require("../profile/marcelo/portfolio/cut5.jpg"),
+      },
     ],
     screen: screen,
   },
