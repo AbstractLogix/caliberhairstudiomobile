@@ -16,7 +16,10 @@ web-build/
 # testing
 coverage
 __snapshots__
+db.js
+
 
 # my_ignore
 square_secrets.ts
 firebase_secrets.ts
+firebase_secrets.js
