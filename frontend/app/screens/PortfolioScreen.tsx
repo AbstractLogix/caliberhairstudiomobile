@@ -13,7 +13,7 @@ const PortfolioScreen = ({ route }: any) => {
         <Text style={style.title}> {artist} </Text>
         <Text style={style.description}>{description}</Text>
         <Image source={profileImage} style={style.image_small} />
-        <Text>ellos</Text>
+        <Text style={style.textInput}>Portfolio</Text>
       </View>
       <FlatList
         data={data}
@@ -21,10 +21,7 @@ const PortfolioScreen = ({ route }: any) => {
         keyExtractor={(item: any) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Image
-              style={{ width: 120, height: 120, resizeMode: "contain" }}
-              source={item.image}
-            />
+            <Image style={style.image_small} source={item.image} />
           </View>
         )}
       />
