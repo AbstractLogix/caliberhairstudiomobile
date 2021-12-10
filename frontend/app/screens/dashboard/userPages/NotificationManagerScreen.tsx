@@ -8,7 +8,7 @@ import styles from "../../../styles/default_style";
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -66,9 +66,14 @@ export default function NotificationManagerScreen() {
       <Button
         title="Press to Send Notification"
         onPress={async () => {
-          await sendPushNotification(expoPushToken, "Caliber Hair Studio", body, {
-            someData: "Some data",
-          });
+          await sendPushNotification(
+            expoPushToken,
+            "Caliber Hair Studio",
+            body,
+            {
+              someData: "Some data",
+            }
+          );
         }}
       />
     </View>

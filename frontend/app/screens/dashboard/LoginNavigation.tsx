@@ -9,6 +9,9 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  Modal,
+  Alert,
+  Pressable,
 } from "react-native";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import { ResponseType, TokenResponse } from "expo-auth-session";
@@ -57,6 +60,22 @@ const SplashScreen = () => {
   );
 };
 
+const SignupScreen = (setModalVisible: any, modalVisible: any) => {
+  return (
+    <View style={style.container}>
+      <View>
+        <Text style={style.modalText}>Hello World!</Text>
+        <Pressable
+          style={style.button_large}
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Text>Hide Modal</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+};
+
 const DashboardScreen = () => {
   // @ts-ignore
   const { signOut } = React.useContext(AuthContext);
@@ -74,6 +93,7 @@ const DashboardScreen = () => {
 const LoginScreen = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   // @ts-ignore
   const { signIn } = React.useContext(AuthContext);
@@ -114,11 +134,26 @@ const LoginScreen = () => {
       >
         <Text style={style.textInput}>Login</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={style.button_large}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <SignupScreen
+          setModalVisible={setModalVisible}
+          modalVisible={modalVisible}
+        />
+      </Modal>
+      <Pressable
+        style={style.button_large}
+        onPress={() => setModalVisible(true)}
+      >
         <Text style={style.textInput}>Signup</Text>
-      </TouchableOpacity>
-
+      </Pressable>
       {/* <FacebookLogin />
       <AppleLogin /> */}
     </View>
@@ -192,18 +227,20 @@ const LoginScreen = () => {
 // };
 
 // error util func
-const errorToString = (error: any) => {
+const errorToString = (error: any, errorStr: string) => {
   const errorCode = error.code;
   const errorMessage = error.message;
   console.log(
-    "Sign up failed due to error code: " +
+    errorStr +
+      " failed due to error code: " +
       errorCode +
       ". Error message: " +
       errorMessage
   );
+  Alert.alert(errorStr);
 };
 
-// Firebase sign-out
+// Firebase sign-in
 const firebaseLoginDefault = async (email: string, password: string) => {
   const auth = getAuth();
   let circuit = false;
@@ -218,21 +255,22 @@ const firebaseLoginDefault = async (email: string, password: string) => {
       circuit = true;
     })
     .catch((error) => {
-      errorToString(error);
+      errorToString(error, "Sign in");
     });
   return circuit;
 };
 
-// Firebase Sign out func
+// Firebase Sign out
 const firebaseSignout = () => {
   const auth = getAuth();
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      console.log("Sign-out successful!!!!");
+      console.log("Sign-out successful!");
+      SecureStore.deleteItemAsync("userToken");
     })
     .catch((error) => {
-      errorToString(error);
+      errorToString(error, "Sign-out");
     });
 };
 
@@ -252,7 +290,7 @@ const firebaseSignUp = (email: string, password: string) => {
       circuit = true;
     })
     .catch((error) => {
-      errorToString(error);
+      errorToString(error, "Sign-up");
     });
   return circuit;
 };
