@@ -55,7 +55,7 @@ const default_style = StyleSheet.create({
   logo_navigation: {
     width: 60,
     height: 42,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   container_carousel: {
     backgroundColor: theme.colors.white,
@@ -107,12 +107,12 @@ const default_style = StyleSheet.create({
   image_small: {
     width: 150,
     height: 150,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   image_medium: {
     height: 200,
     width: 200,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   title: {
     fontWeight: "bold",

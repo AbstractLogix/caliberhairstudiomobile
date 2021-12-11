@@ -134,7 +134,7 @@ const LoginScreen = () => {
       >
         <Text style={style.textInput}>Login</Text>
       </TouchableOpacity>
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -147,7 +147,7 @@ const LoginScreen = () => {
           setModalVisible={setModalVisible}
           modalVisible={modalVisible}
         />
-      </Modal>
+      </Modal> */}
       <Pressable
         style={style.button_large}
         onPress={() => setModalVisible(true)}
@@ -255,7 +255,7 @@ const firebaseLoginDefault = async (email: string, password: string) => {
       circuit = true;
     })
     .catch((error) => {
-      errorToString(error, "Sign in");
+      errorToString(error, "Authentication error, please try again");
     });
   return circuit;
 };
@@ -266,11 +266,11 @@ const firebaseSignout = () => {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      console.log("Sign-out successful!");
+      Alert.alert("Sign-out successful!");
       SecureStore.deleteItemAsync("userToken");
     })
     .catch((error) => {
-      errorToString(error, "Sign-out");
+      errorToString(error, "Sign-out failed.");
     });
 };
 
