@@ -388,7 +388,7 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
-            //initialParams={authContext}
+            // initialParams={authContext} // pass authContext to LoginScreen for abstraction later.
             options={{
               title: "Sign in",
               // When logging out, a pop animation feels intuitive

@@ -6,6 +6,7 @@ import {
   View,
   FlatList,
   Button,
+  Alert,
 } from "react-native";
 import style from "../../../styles/default_style";
 import artists from "../../../assets/data/artistData";
@@ -25,7 +26,7 @@ const ProfileManagerScreen = () => {
           renderItem={({ item }) => (
             <TouchableOpacity
               // @ts-ignore
-              onPress={deleteProfile} // need to take list of additional params can be ANY list
+              onPress={deleteProfile}
               style={tw`p-2 pl-6 pb-8 pt-4 bg-white m-2 w-40`}
             >
               <View>
@@ -68,7 +69,15 @@ const addProfile = () => {
 };
 
 const deleteProfile = () => {
-  console.log("delete profile");
+  Alert.alert("Caution", "Are you sure you want to delete this Profile?", [
+    {
+      text: "Yes",
+      onPress: () => {
+        console.log("delete profile");
+      },
+    },
+    { text: "No" },
+  ]);
 };
 
 const updateProfile = () => {

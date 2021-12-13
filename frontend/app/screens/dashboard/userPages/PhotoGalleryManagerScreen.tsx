@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Alert,
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
@@ -19,7 +26,7 @@ const PhotoGalleryManagerScreen = () => {
           renderItem={({ item }) => (
             <TouchableOpacity
               // @ts-ignore
-              onPress={deletePhoto} // need to take list of additional params can be ANY list
+              onPress={deletePhoto}
               style={tw`p-2 pl-6 pb-8 pt-4 bg-white m-2 w-40`}
             >
               <View>
@@ -58,18 +65,23 @@ const PhotoGalleryManagerScreen = () => {
 };
 
 const addPhoto = () => {
-  return null;
+  console.log("add photo");
 };
 
 const deletePhoto = () => {
-  if (prompt("Are you sure you want to delete this photo?")) {
-    // delete photo
-  }
-  return null;
+  Alert.alert("Caution", "Are you sure you want to delete this Photo?", [
+    {
+      text: "Yes",
+      onPress: () => {
+        console.log("delete photo");
+      },
+    },
+    { text: "No" },
+  ]);
 };
 
 const changeOrder = () => {
-  return null;
+  console.log("change order");
 };
 
 export default PhotoGalleryManagerScreen;
