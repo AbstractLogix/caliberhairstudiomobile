@@ -57,7 +57,7 @@ const PhotoGalleryManagerScreen = () => {
       >
         <View>
           <Button title="Add Photo" onPress={addPhoto}></Button>
-          <Button title="Change Order" onPress={changeOrder}></Button>
+          <Button title="Change Order" onPress={updatePhotoOrder}></Button>
         </View>
       </View>
     </View>
@@ -80,7 +80,7 @@ const deletePhoto = () => {
   ]);
 };
 
-const changeOrder = () => {
+const updatePhotoOrder = () => {
   console.log("change order");
 };
 
