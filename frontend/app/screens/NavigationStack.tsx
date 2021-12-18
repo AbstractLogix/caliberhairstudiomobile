@@ -13,7 +13,7 @@ import HomeScreen from "./HomeScreen";
 import ProductsScreen from "./ProductsScreen";
 import ArtistsScreen from "./ArtistsScreen";
 import GalleryScreen from "./GalleryScreen";
-import ProductScreen from "./ProductScreen";
+import ProductScreen from "./ProductOverviewScreen";
 import LoginNavigation from "./dashboard/LoginNavigation";
 import PortfolioScreen from "./PortfolioScreen";
 
