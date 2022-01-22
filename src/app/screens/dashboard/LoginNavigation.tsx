@@ -8,10 +8,10 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Button,
   Modal,
   Alert,
   Pressable,
+  Button,
 } from "react-native";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import { ResponseType, TokenResponse } from "expo-auth-session";
@@ -27,7 +27,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-import style from "../../styles/default_style";
+import default_style from "../../styles/default_style";
 import AnalyticsScreen from "./userPages/AnalyticsScreen";
 import NotificationManagerScreen from "./userPages/NotificationManagerScreen";
 import ProfileManagerScreen from "./userPages/ProfileManagerScreen";
@@ -54,7 +54,7 @@ const AuthContext = React.createContext();
 
 const SplashScreen = () => {
   return (
-    <View style={style.container}>
+    <View style={default_style.container}>
       <Text>LOADING AF...</Text>
     </View>
   );
@@ -62,11 +62,11 @@ const SplashScreen = () => {
 
 const SignupScreen = (setModalVisible: any, modalVisible: any) => {
   return (
-    <View style={style.container}>
+    <View style={default_style.container}>
       <View>
-        <Text style={style.modalText}>Hello World!</Text>
+        <Text style={default_style.modalText}>Hello World!</Text>
         <Pressable
-          style={style.button_large}
+          style={default_style.button_large}
           onPress={() => setModalVisible(!modalVisible)}
         >
           <Text>Hide Modal</Text>
@@ -81,9 +81,9 @@ const DashboardScreen = () => {
   const { signOut } = React.useContext(AuthContext);
 
   return (
-    <View style={style.container}>
+    <View style={default_style.container}>
       <NavOptions items={dashboardNavData} />
-      <View style={style.button_signout}>
+      <View style={default_style.button_signout}>
         <Button title="Sign out" onPress={signOut} />
       </View>
     </View>
@@ -99,24 +99,24 @@ const LoginScreen = () => {
   const { signIn } = React.useContext(AuthContext);
 
   return (
-    <View style={style.container}>
+    <View style={default_style.container}>
       <Image
-        style={style.image_medium}
+        style={default_style.image_medium}
         source={require("../../assets/caliber_logo_500x500.png")}
       ></Image>
-      <View style={style.inputView}>
+      <View style={default_style.inputView}>
         <TextInput
-          style={style.textInput}
+          style={default_style.textInput}
           placeholder="Email Address"
           value={email}
           placeholderTextColor={theme.colors.black}
           onChangeText={setEmail} // expression expected
         />
       </View>
-      <View style={style.inputView}>
+      <View style={default_style.inputView}>
         <TextInput
           secureTextEntry
-          style={style.textInput}
+          style={default_style.textInput}
           placeholder="Password"
           value={password}
           placeholderTextColor={theme.colors.black}
@@ -124,16 +124,17 @@ const LoginScreen = () => {
         />
       </View>
 
-      <TouchableOpacity style={style.button_forgot} onPress={() => {}}>
-        <Text style={style.textInput}>Forgot Password?</Text>
+      <TouchableOpacity style={default_style.button_forgot} onPress={() => {}}>
+        <Text style={default_style.textInput}>Forgot Password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={style.button_large}
+        style={default_style.button_large}
         onPress={() => signIn({ email, password })}
       >
-        <Text style={style.textInput}>Login</Text>
+        <Text style={default_style.textInput}>Login</Text>
       </TouchableOpacity>
+
       {/* <Modal
         animationType="slide"
         transparent={true}
@@ -149,10 +150,10 @@ const LoginScreen = () => {
         />
       </Modal> */}
       <Pressable
-        style={style.button_large}
+        style={default_style.button_large}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={style.textInput}>Signup</Text>
+        <Text style={default_style.textInput}>Signup</Text>
       </Pressable>
       {/* <FacebookLogin />
       <AppleLogin /> */}
