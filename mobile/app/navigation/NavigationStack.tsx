@@ -23,8 +23,9 @@ function LogoTitle() {
   const navigation = useNavigation();
 
   return (
-    // @ts-ignore
-    <Pressable onLongPress={() => navigation.navigate("LoginNavigation")}>
+    <Pressable
+      onLongPress={() => navigation.navigate({ key: "LoginNavigation" })}
+    >
       <Image
         style={style.logo_navigation}
         source={require("../assets/caliber_logo_150x150.png")}
@@ -44,7 +45,6 @@ const NavigationStack = () => {
         <Stack.Navigator
           // HEADER
           screenOptions={{
-            // @ts-ignore
             headerLeft: () => <LogoTitle />,
           }}
           // BODY

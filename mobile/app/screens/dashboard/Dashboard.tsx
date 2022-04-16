@@ -4,8 +4,7 @@ import default_style from "../../styles/default_style";
 import { dashboardNavData } from "../../assets/data/dashboardNavData";
 import { NavOptions } from "../../components";
 
-const Dashboard = () => {
-  // @ts-ignore
+const Dashboard = (AuthContext: React.Context<{ signOut: any; }>) => {
   const { signOut } = React.useContext(AuthContext);
 
   return (

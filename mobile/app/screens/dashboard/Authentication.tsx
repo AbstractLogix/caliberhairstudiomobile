@@ -15,7 +15,7 @@ import theme from "../../config/theme";
 import LoginNavigation from "../../navigation/LoginNavigation";
 
 // authorization context
- 
+
 const AuthContext = React.createContext({ signIn: () => {} });
 
 const Authentication = () => {
@@ -23,7 +23,6 @@ const Authentication = () => {
   const [password, setPassword] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
 
-  
   const { signIn } = React.useContext(AuthContext);
 
   return (
@@ -58,7 +57,7 @@ const Authentication = () => {
 
       <TouchableOpacity
         style={default_style.button_large}
-        onPress={() => <LoginNavigation { ...{email, password} } />}
+        onPress={() => <LoginNavigation {...{ email, password }} />}
       >
         <Text style={default_style.textInput}>Login</Text>
       </TouchableOpacity>
@@ -86,7 +85,5 @@ const errorToString = (error: any, errorStr: string) => {
   );
   Alert.alert(errorStr);
 };
-
-
 
 export default Authentication;

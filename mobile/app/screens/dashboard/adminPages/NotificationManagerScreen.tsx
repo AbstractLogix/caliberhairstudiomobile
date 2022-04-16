@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, Button, Platform, StyleSheet } from "react-native";
+import { View, Button, Platform } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import styles from "../../../styles/default_style";
 
