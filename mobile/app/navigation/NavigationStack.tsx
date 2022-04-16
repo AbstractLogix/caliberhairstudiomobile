@@ -9,13 +9,13 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import HomeScreen from "./HomeScreen";
-import ProductsScreen from "./ProductsScreen";
-import ArtistsScreen from "./ArtistsScreen";
-import GalleryScreen from "./GalleryScreen";
-import ProductScreen from "./ProductOverviewScreen";
-import LoginNavigation from "./dashboard/LoginNavigation";
-import PortfolioScreen from "./PortfolioScreen";
+import HomeScreen from "../screens/HomeScreen";
+import ProductsScreen from "../screens/ProductsScreen";
+import ArtistsScreen from "../screens/ArtistsScreen";
+import GalleryScreen from "../screens/GalleryScreen";
+import ProductScreen from "../screens/ProductOverviewScreen";
+import LoginNavigation from "../screens/dashboard/Authentication";
+import PortfolioScreen from "../screens/PortfolioScreen";
 
 import style from "../styles/default_style";
 
@@ -40,6 +40,7 @@ const NavigationStack = () => {
   return (
     <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
       <SafeAreaProvider>
+        {/* @ts-ignore */}
         <Stack.Navigator
           // HEADER
           screenOptions={{
