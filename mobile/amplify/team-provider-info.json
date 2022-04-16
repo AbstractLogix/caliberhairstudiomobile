@@ -10,6 +10,11 @@
       "StackName": "amplify-calibermobile-dev-205555",
       "StackId": "arn:aws:cloudformation:us-east-1:695158253399:stack/amplify-calibermobile-dev-205555/fa28daa0-bd1f-11ec-8253-0a060a2e47af",
       "AmplifyAppId": "d3s5pvshfue6zp"
+    },
+    "categories": {
+      "auth": {
+        "calibermobile4aaecc5f": {}
+      }
     }
   }
 }
