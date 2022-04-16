@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-calibermobile-dev-205555-authRole",
+      "UnauthRoleArn": "arn:aws:iam::695158253399:role/amplify-calibermobile-dev-205555-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::695158253399:role/amplify-calibermobile-dev-205555-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-calibermobile-dev-205555-deployment",
+      "UnauthRoleName": "amplify-calibermobile-dev-205555-unauthRole",
+      "StackName": "amplify-calibermobile-dev-205555",
+      "StackId": "arn:aws:cloudformation:us-east-1:695158253399:stack/amplify-calibermobile-dev-205555/fa28daa0-bd1f-11ec-8253-0a060a2e47af",
+      "AmplifyAppId": "d3s5pvshfue6zp"
+    }
+  }
+}

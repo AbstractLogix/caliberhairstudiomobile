@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "caliberhairstudiomobile",
+    "slug": "caliberhairstudiomobile",
+    "owner": "abstractsoftware",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/caliber_logo_150x150.png",
+    "splash": {
+      "image": "./app/assets/caliber_logo_500x500.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.abstractsoftware.caliberhairstudiomobile",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/caliber_logo_150x150.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "io.abstractsoftware.caliberhairstudiomobile",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./app/assets/caliber_logo_150x150.png"
+    },
+    "description": ""
+  }
+}
