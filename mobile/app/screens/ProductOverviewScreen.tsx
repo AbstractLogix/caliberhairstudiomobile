@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 
-import style from "../styles/default_style";
+import { default_style as style } from "../styles";
 
 const ProductScreen = ({ route }: any) => {
   const { title, image, description, count, price } = route.params;

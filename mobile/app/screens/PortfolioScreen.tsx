@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-import style from "../styles/default_style";
+import { default_style as style } from "../styles";
 
 const PortfolioScreen = ({ route }: any) => {
   const { artist, profileImage, description, portfolio } = route.params;
-  const data: {}[] = portfolio;
+  const data: { id: number; image: any }[] = portfolio;
   return (
     <View style={style.container}>
       <View>

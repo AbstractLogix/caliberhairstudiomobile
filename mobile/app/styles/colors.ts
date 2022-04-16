@@ -1,4 +1,4 @@
-const blueVersion = {
+const colors = {
   primary: "#555CC4",
   primaryLight: "#829BF8",
   primaryGradientStart: "#4f44b6",
@@ -20,4 +20,4 @@ const blueVersion = {
   yellow: "#ffc247",
 };
 
-export default blueVersion;
+export default colors;

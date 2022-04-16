@@ -3,7 +3,7 @@ import { SafeAreaView, Button, View } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 
 import NavOptions from "../components/NavOptions";
-import style from "../styles/default_style";
+import { default_style as style } from "../styles";
 
 const data = [
   {

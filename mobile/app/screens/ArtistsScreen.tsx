@@ -4,7 +4,8 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-elements";
 import tw from "tailwind-react-native-classnames";
 import artistData from "../assets/data/artistData";
-import style from "../styles/default_style";
+import { default_style as style } from "../styles";
+
 const artists = artistData;
 
 const ArtistsScreen = () => {

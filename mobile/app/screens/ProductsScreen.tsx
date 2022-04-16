@@ -6,7 +6,7 @@ import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
 
 import productData from "../assets/data/productData";
-import style from "../styles/default_style";
+import { default_style as style } from "../styles";
 
 const products = productData;
 

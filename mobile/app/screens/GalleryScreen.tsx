@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { View, Image, Dimensions } from "react-native";
 import CarouselComp from "react-native-snap-carousel";
 import galleryData from "../assets/data/galleryData";
-import styles from "../styles/default_style";
+import { default_style as style } from "../styles";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
@@ -11,8 +11,8 @@ const data = galleryData;
 
 const CarouselItem = ({ item, index }: any) => {
   return (
-    <View style={styles.container_carousel} key={index}>
-      <Image source={item.url} style={styles.image_carousel} />
+    <View style={style.container_carousel} key={index}>
+      <Image source={item.url} style={style.image_carousel} />
     </View>
   );
 };
