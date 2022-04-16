@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import * as SecureStore from "expo-secure-store";
-import * as AppleAuthentication from "expo-apple-authentication";
 import {
   View,
   Image,
@@ -13,19 +12,7 @@ import {
   Pressable,
   Button,
 } from "react-native";
-import * as Facebook from "expo-auth-session/providers/facebook";
-import { ResponseType, TokenResponse } from "expo-auth-session";
-import { initializeApp } from "firebase/app";
 import * as WebBrowser from "expo-web-browser";
-import {
-  getAuth,
-  FacebookAuthProvider,
-  signInWithCredential,
-  signInWithEmailAndPassword,
-  UserCredential,
-  signOut,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
 
 import default_style from "../../styles/default_style";
 import AnalyticsScreen from "./userPages/AnalyticsScreen";
@@ -33,16 +20,9 @@ import NotificationManagerScreen from "./userPages/NotificationManagerScreen";
 import ProfileManagerScreen from "./userPages/ProfileManagerScreen";
 import PhotoGalleryManagerScreen from "./userPages/PhotoGalleryManagerScreen";
 
-import {
-  firebaseConfig,
-  facebookConfig,
-} from "../../api/firebase/firebase_secrets";
 import theme from "../../config/theme";
 import NavOptions from "../../components/NavOptions";
 import { dashboardNavData } from "../../assets/data/dashboardNavData";
-
-// initalize firebase
-initializeApp(firebaseConfig);
 
 //Web only: This method should be invoked on the page that the auth popup gets redirected to on web,
 //it'll ensure that authentication is completed properly. On native this does nothing.
@@ -241,61 +221,6 @@ const errorToString = (error: any, errorStr: string) => {
   Alert.alert(errorStr);
 };
 
-// Firebase sign-in
-const firebaseLoginDefault = async (email: string, password: string) => {
-  const auth = getAuth();
-  let circuit = false;
-  await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      SecureStore.setItemAsync(
-        "userToken",
-        // @ts-ignore
-        JSON.stringify(userCredential.user.getIdToken())
-      );
-      circuit = true;
-    })
-    .catch((error) => {
-      errorToString(error, "Authentication error, please try again");
-    });
-  return circuit;
-};
-
-// Firebase Sign out
-const firebaseSignout = () => {
-  const auth = getAuth();
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      Alert.alert("Sign-out successful!");
-      SecureStore.deleteItemAsync("userToken");
-    })
-    .catch((error) => {
-      errorToString(error, "Sign-out failed.");
-    });
-};
-
-// Firebase Sign up func
-const firebaseSignUp = (email: string, password: string) => {
-  const auth = getAuth();
-  let circuit = false;
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in automatically after creation of account
-      const user = userCredential.user;
-      console.log("Account created and user " + user + "logged in...");
-      SecureStore.setItemAsync(
-        "userToken",
-        JSON.stringify(userCredential.user.getIdToken())
-      );
-      circuit = true;
-    })
-    .catch((error) => {
-      errorToString(error, "Sign-up");
-    });
-  return circuit;
-};
-
 const LoginNavigation = () => {
   const Stack = createNativeStackNavigator();
 
@@ -354,20 +279,22 @@ const LoginNavigation = () => {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data: any) => {
-        const circuit = await firebaseLoginDefault(data.email, data.password);
+        // const circuit = await firebaseLoginDefault(data.email, data.password);
+        const circuit = true;
         if (circuit) {
           const token = SecureStore.getItemAsync("userToken");
           dispatch({ type: "SIGN_IN", token: token });
         }
       },
       signOut: () => {
-        firebaseSignout();
+        // firebaseSignout();
         SecureStore.deleteItemAsync("userToken");
         dispatch({ type: "SIGN_OUT" });
       },
       signUp: async (data: any) => {
         // Another dummy token
-        const circuit = await firebaseSignUp(data.email, data.password);
+        // const circuit = await firebaseSignUp(data.email, data.password);
+        const circuit = true;
         if (circuit) {
           const token = SecureStore.getItemAsync("userToken");
           dispatch({ type: "SIGN_IN", token: token });
