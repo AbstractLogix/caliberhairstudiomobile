@@ -1,38 +1,22 @@
 import React from "react";
-import { Image, Pressable, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
-  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import style from "../styles/default_style";
 import {
   ArtistsScreen,
   GalleryScreen,
   HomeScreen,
+  Logo,
   PortfolioScreen,
   ProductScreen,
   ProductsScreen,
 } from "../screens";
 import LoginNavigation from "./LoginNavigation";
-
-function LogoTitle() {
-  const navigation = useNavigation();
-
-  return (
-    <Pressable
-      onLongPress={() => navigation.navigate({ key: "LoginNavigation" })}
-    >
-      <Image
-        style={style.logo_navigation}
-        source={require("../assets/caliber_logo_150x150.png")}
-      />
-    </Pressable>
-  );
-}
 
 const NavigationStack = () => {
   const Stack = createNativeStackNavigator();
@@ -44,7 +28,7 @@ const NavigationStack = () => {
         {/* @ts-ignore */}
         <Stack.Navigator
           screenOptions={{
-            headerLeft: () => <LogoTitle />,
+            headerLeft: () => <Logo />,
           }}
         >
           <Stack.Screen

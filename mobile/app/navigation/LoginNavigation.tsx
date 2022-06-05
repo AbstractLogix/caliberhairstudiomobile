@@ -100,60 +100,63 @@ const LoginNavigation = () => {
     return <Splash />;
   }
   return (
-    /*  @ts-ignore  */
-    <Stack.Navigator>
-      {state.userToken == null ? (
-        // No token found, user isn't signed in
+    //@ts-ignore
+    <AuthContext.Provider value={authContext}>
+      {/* @ts-ignore */}
+      <Stack.Navigator>
+        {state.userToken == null ? (
+          // No token found, user isn't signed in
+          <Stack.Screen
+            name="Authentication"
+            component={Authentication}
+            initialParams={authContext}
+            options={{
+              title: "Sign in",
+              // When logging out, a pop animation feels intuitive
+              // you can remove this if you want the default 'push' animation
+              animationTypeForReplace: state.isSignout ? "pop" : "push",
+            }}
+          />
+        ) : (
+          // User is signed in
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{
+              title: "Dashboard",
+            }}
+          />
+        )}
         <Stack.Screen
-          name="Authentication"
-          component={Authentication}
-          initialParams={authContext}
+          name="AnalyticsScreen"
+          component={AnalyticsScreen}
           options={{
-            title: "Sign in",
-            // When logging out, a pop animation feels intuitive
-            // you can remove this if you want the default 'push' animation
-            animationTypeForReplace: state.isSignout ? "pop" : "push",
+            title: "Analytics",
           }}
         />
-      ) : (
-        // User is signed in
         <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
+          name="NotificationManagerScreen"
+          component={NotificationManagerScreen}
           options={{
-            title: "Dashboard",
+            title: "Notification Manager",
           }}
         />
-      )}
-      <Stack.Screen
-        name="AnalyticsScreen"
-        component={AnalyticsScreen}
-        options={{
-          title: "Analytics",
-        }}
-      />
-      <Stack.Screen
-        name="NotificationManagerScreen"
-        component={NotificationManagerScreen}
-        options={{
-          title: "Notification Manager",
-        }}
-      />
-      <Stack.Screen
-        name="ProfileManagerScreen"
-        component={ProfileManagerScreen}
-        options={{
-          title: "Profile Manager",
-        }}
-      />
-      <Stack.Screen
-        name="PhotoGalleryManagerScreen"
-        component={PhotoGalleryManagerScreen}
-        options={{
-          title: "Photo Gallery Manager",
-        }}
-      />
-    </Stack.Navigator>
+        <Stack.Screen
+          name="ProfileManagerScreen"
+          component={ProfileManagerScreen}
+          options={{
+            title: "Profile Manager",
+          }}
+        />
+        <Stack.Screen
+          name="PhotoGalleryManagerScreen"
+          component={PhotoGalleryManagerScreen}
+          options={{
+            title: "Photo Gallery Manager",
+          }}
+        />
+      </Stack.Navigator>
+    </AuthContext.Provider>
   );
 };
 

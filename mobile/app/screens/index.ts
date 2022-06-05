@@ -6,7 +6,7 @@ import Splash from "./util/Splash";
 import ProductScreen from "./ProductOverviewScreen";
 import ProductsScreen from "./ProductsScreen";
 import PortfolioScreen from "./PortfolioScreen";
-
+import Logo from "./util/Logo";
 import Authentication from "./dashboard/Authentication";
 
 // admin pages
@@ -16,4 +16,4 @@ import PhotoGalleryManagerScreen from "./dashboard/adminPages/PhotoGalleryManage
 import ProfileManagerScreen from "./dashboard/adminPages/ProfileManagerScreen";
 
 
-export { Authentication, Dashboard, Splash, HomeScreen, ArtistsScreen, GalleryScreen, AnalyticsScreen, NotificationManagerScreen, PhotoGalleryManagerScreen, ProfileManagerScreen, ProductScreen, ProductsScreen, PortfolioScreen };
+export { Authentication, Dashboard, Splash, HomeScreen, ArtistsScreen, GalleryScreen, AnalyticsScreen, NotificationManagerScreen, PhotoGalleryManagerScreen, Logo, ProfileManagerScreen, ProductScreen, ProductsScreen, PortfolioScreen };
