@@ -1,5 +1,6 @@
 import theme from "../config/theme";
 import { Dimensions, StyleSheet } from "react-native";
+import tw from "tailwind-react-native-classnames";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
@@ -83,9 +84,7 @@ const default_style = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: theme.colors.white,
   },
-  button_signout: {
-    margin: 40,
-  },
+  button_signout: tw`m-10`,
   inputView: {
     width: "80%",
     backgroundColor: theme.colors.extraExtraLightGray,

@@ -11,6 +11,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
 import { Auth } from "aws-amplify";
+import { Alert } from "react-native";
 
 const AuthContext = React.createContext({
   signIn: () => {},
@@ -158,6 +159,20 @@ const LoginNavigation = () => {
       </Stack.Navigator>
     </AuthContext.Provider>
   );
+};
+
+// error util func
+const errorToString = (error: any, errorStr: string) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log(
+    errorStr +
+      " failed due to error code: " +
+      errorCode +
+      ". Error message: " +
+      errorMessage
+  );
+  Alert.alert(errorStr);
 };
 
 export default LoginNavigation;

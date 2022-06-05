@@ -8,6 +8,7 @@ import ProductsScreen from "./ProductsScreen";
 import PortfolioScreen from "./PortfolioScreen";
 import Logo from "./util/Logo";
 import Authentication from "./dashboard/Authentication";
+import Onboarding from "./dashboard/Onboarding";
 
 // admin pages
 import AnalyticsScreen from "./dashboard/adminPages/AnalyticsScreen";
@@ -15,5 +16,20 @@ import NotificationManagerScreen from "./dashboard/adminPages/NotificationManage
 import PhotoGalleryManagerScreen from "./dashboard/adminPages/PhotoGalleryManagerScreen";
 import ProfileManagerScreen from "./dashboard/adminPages/ProfileManagerScreen";
 
-
-export { Authentication, Dashboard, Splash, HomeScreen, ArtistsScreen, GalleryScreen, AnalyticsScreen, NotificationManagerScreen, PhotoGalleryManagerScreen, Logo, ProfileManagerScreen, ProductScreen, ProductsScreen, PortfolioScreen };
+export {
+  Authentication,
+  Dashboard,
+  Splash,
+  HomeScreen,
+  ArtistsScreen,
+  GalleryScreen,
+  AnalyticsScreen,
+  NotificationManagerScreen,
+  PhotoGalleryManagerScreen,
+  Logo,
+  Onboarding,
+  ProfileManagerScreen,
+  ProductScreen,
+  ProductsScreen,
+  PortfolioScreen,
+};
