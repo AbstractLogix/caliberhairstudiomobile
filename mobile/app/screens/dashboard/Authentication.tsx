@@ -10,11 +10,14 @@ import {
 } from "react-native";
 import default_style from "../../styles/default_style";
 import theme from "../../config/theme";
+import { useNavigation } from "@react-navigation/native";
 
-const Authentication = (authContext: { signIn: Function }) => {
+const Authentication = ({ route }: any) => {
+  // initial params from navigator
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
+  const { signIn } = route.params; // descruturing
 
   return (
     <View style={default_style.container}>
@@ -47,7 +50,7 @@ const Authentication = (authContext: { signIn: Function }) => {
 
       <TouchableOpacity
         style={default_style.button_large}
-        onPress={() => authContext.signIn({ email, password })}
+        onPress={() => signIn(email, password)}
       >
         <Text style={default_style.textInput}>Login</Text>
       </TouchableOpacity>
