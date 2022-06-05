@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import default_style from "../../styles/default_style";
 import theme from "../../config/theme";
-import { useNavigation } from "@react-navigation/native";
 
 const Authentication = ({ route }: any) => {
   // initial params from navigator

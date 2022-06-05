@@ -19,6 +19,7 @@ const NavOptions = ({ items }: NavItemProps) => {
   const navigation = useNavigation();
   return (
     <FlatList
+      scrollEnabled={false}
       data={items}
       numColumns={2}
       keyExtractor={(item) => item.id}
