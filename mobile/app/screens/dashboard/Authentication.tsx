@@ -8,22 +8,13 @@ import {
   Alert,
   Pressable,
 } from "react-native";
-
 import default_style from "../../styles/default_style";
-
 import theme from "../../config/theme";
-import LoginNavigation from "../../navigation/LoginNavigation";
 
-// authorization context
-
-const AuthContext = React.createContext({ signIn: () => {} });
-
-const Authentication = () => {
+const Authentication = (authContext: { signIn: Function }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
-
-  const { signIn } = React.useContext(AuthContext);
 
   return (
     <View style={default_style.container}>
@@ -37,7 +28,7 @@ const Authentication = () => {
           placeholder="Email Address"
           value={email}
           placeholderTextColor={theme.colors.black}
-          onChangeText={setEmail} // expression expected
+          onChangeText={setEmail}
         />
       </View>
       <View style={default_style.inputView}>
@@ -50,14 +41,13 @@ const Authentication = () => {
           onChangeText={setPassword}
         />
       </View>
-
       <TouchableOpacity style={default_style.button_forgot} onPress={() => {}}>
         <Text style={default_style.textInput}>Forgot Password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={default_style.button_large}
-        onPress={() => <LoginNavigation {...{ email, password }} />}
+        onPress={() => authContext.signIn({ email, password })}
       >
         <Text style={default_style.textInput}>Login</Text>
       </TouchableOpacity>

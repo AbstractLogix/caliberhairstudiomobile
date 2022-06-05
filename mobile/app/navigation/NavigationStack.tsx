@@ -8,16 +8,16 @@ import {
   useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import HomeScreen from "../screens/HomeScreen";
-import ProductsScreen from "../screens/ProductsScreen";
-import ArtistsScreen from "../screens/ArtistsScreen";
-import GalleryScreen from "../screens/GalleryScreen";
-import ProductScreen from "../screens/ProductOverviewScreen";
-import LoginNavigation from "../screens/dashboard/Authentication";
-import PortfolioScreen from "../screens/PortfolioScreen";
-
 import style from "../styles/default_style";
+import {
+  ArtistsScreen,
+  GalleryScreen,
+  HomeScreen,
+  PortfolioScreen,
+  ProductScreen,
+  ProductsScreen,
+} from "../screens";
+import LoginNavigation from "./LoginNavigation";
 
 function LogoTitle() {
   const navigation = useNavigation();
@@ -43,11 +43,9 @@ const NavigationStack = () => {
       <SafeAreaProvider>
         {/* @ts-ignore */}
         <Stack.Navigator
-          // HEADER
           screenOptions={{
             headerLeft: () => <LogoTitle />,
           }}
-          // BODY
         >
           <Stack.Screen
             name="HomeScreen"

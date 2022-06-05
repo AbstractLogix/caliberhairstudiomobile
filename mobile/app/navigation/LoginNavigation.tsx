@@ -12,8 +12,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
 import { Auth } from "aws-amplify";
 
-const LoginNavigation = (data: { email: string; password: string }) => {
+const AuthContext = React.createContext({
+  signIn: () => {},
+});
+
+const LoginNavigation = () => {
   const Stack = createNativeStackNavigator();
+  const { signIn } = React.useContext(AuthContext);
 
   const [state, dispatch] = React.useReducer(
     (prevState: any, action: any) => {
@@ -49,16 +54,13 @@ const LoginNavigation = (data: { email: string; password: string }) => {
     // Fetch the token from the storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
-
       try {
         userToken = await SecureStore.getItemAsync("userToken");
       } catch (e) {
         // Restoring token failed
-        console.log(e); // make error page?
+        console.log(e);
       }
-
       // After restoring token, we may need to validate it in production apps
-
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       dispatch({ type: "RESTORE_TOKEN", token: userToken });
@@ -69,8 +71,8 @@ const LoginNavigation = (data: { email: string; password: string }) => {
 
   const authContext = React.useMemo(
     () => ({
-      signIn: async (data: { email: string; password: string }) => {
-        const user = await Auth.signIn(data.email, data.password);
+      signIn: async (email: string, password: string) => {
+        const user = await Auth.signIn(email, password);
         if (user) {
           const token = SecureStore.getItemAsync("userToken");
           dispatch({ type: "SIGN_IN", token: token });
@@ -91,6 +93,7 @@ const LoginNavigation = (data: { email: string; password: string }) => {
     }),
     []
   );
+
   if (state.isLoading) {
     // we havent finished checking for user token yet.
     // Usually done by checking if a valid token exists
@@ -104,7 +107,7 @@ const LoginNavigation = (data: { email: string; password: string }) => {
         <Stack.Screen
           name="Authentication"
           component={Authentication}
-          initialParams={authContext} // pass authContext to LoginScreen for abstraction later.
+          initialParams={authContext}
           options={{
             title: "Sign in",
             // When logging out, a pop animation feels intuitive
@@ -117,7 +120,6 @@ const LoginNavigation = (data: { email: string; password: string }) => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          initialParams={authContext}
           options={{
             title: "Dashboard",
           }}
@@ -126,7 +128,6 @@ const LoginNavigation = (data: { email: string; password: string }) => {
       <Stack.Screen
         name="AnalyticsScreen"
         component={AnalyticsScreen}
-        initialParams={authContext}
         options={{
           title: "Analytics",
         }}
@@ -134,7 +135,6 @@ const LoginNavigation = (data: { email: string; password: string }) => {
       <Stack.Screen
         name="NotificationManagerScreen"
         component={NotificationManagerScreen}
-        initialParams={authContext}
         options={{
           title: "Notification Manager",
         }}
@@ -142,7 +142,6 @@ const LoginNavigation = (data: { email: string; password: string }) => {
       <Stack.Screen
         name="ProfileManagerScreen"
         component={ProfileManagerScreen}
-        initialParams={authContext}
         options={{
           title: "Profile Manager",
         }}
@@ -150,7 +149,6 @@ const LoginNavigation = (data: { email: string; password: string }) => {
       <Stack.Screen
         name="PhotoGalleryManagerScreen"
         component={PhotoGalleryManagerScreen}
-        initialParams={authContext}
         options={{
           title: "Photo Gallery Manager",
         }}

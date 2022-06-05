@@ -3,6 +3,9 @@ import ArtistsScreen from "./ArtistsScreen";
 import HomeScreen from "./HomeScreen";
 import GalleryScreen from "./GalleryScreen";
 import Splash from "./util/Splash";
+import ProductScreen from "./ProductOverviewScreen";
+import ProductsScreen from "./ProductsScreen";
+import PortfolioScreen from "./PortfolioScreen";
 
 import Authentication from "./dashboard/Authentication";
 
@@ -13,4 +16,4 @@ import PhotoGalleryManagerScreen from "./dashboard/adminPages/PhotoGalleryManage
 import ProfileManagerScreen from "./dashboard/adminPages/ProfileManagerScreen";
 
 
-export { Authentication, Dashboard, Splash, HomeScreen, ArtistsScreen, GalleryScreen, AnalyticsScreen, NotificationManagerScreen, PhotoGalleryManagerScreen, ProfileManagerScreen };
+export { Authentication, Dashboard, Splash, HomeScreen, ArtistsScreen, GalleryScreen, AnalyticsScreen, NotificationManagerScreen, PhotoGalleryManagerScreen, ProfileManagerScreen, ProductScreen, ProductsScreen, PortfolioScreen };

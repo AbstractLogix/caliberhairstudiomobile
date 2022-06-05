@@ -18,6 +18,9 @@ coverage
 __snapshots__
 db.js
 
+
+# my_ignore
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -38,5 +41,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-# my_ignore

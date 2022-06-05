@@ -9,7 +9,7 @@ const data = [
   {
     id: "1",
     title: "Products",
-    image: require("../assets/products/wash_224x224.png"), // instead of require could be uri
+    image: require("../assets/products/wash_224x224.png"), 
     screen: "ProductsScreen",
   },
   {
