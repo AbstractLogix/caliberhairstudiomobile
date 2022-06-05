@@ -8,7 +8,6 @@ import ProductsScreen from "./ProductsScreen";
 import PortfolioScreen from "./PortfolioScreen";
 import Logo from "./util/Logo";
 import Authentication from "./dashboard/Authentication";
-import Onboarding from "./dashboard/Onboarding";
 
 // admin pages
 import AnalyticsScreen from "./dashboard/adminPages/AnalyticsScreen";
@@ -27,7 +26,6 @@ export {
   NotificationManagerScreen,
   PhotoGalleryManagerScreen,
   Logo,
-  Onboarding,
   ProfileManagerScreen,
   ProductScreen,
   ProductsScreen,

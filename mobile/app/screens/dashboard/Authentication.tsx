@@ -17,7 +17,9 @@ const Authentication = ({ navigation, route }: any) => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
-      onSubmit={({ email, password }) => signIn(email, password)}
+      onSubmit={({ email, password }) =>
+        /* signIn(email, password) */ console.log(email + password)
+      }
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View style={default_style.container}>
@@ -68,7 +70,9 @@ const Authentication = ({ navigation, route }: any) => {
                 "Pick a strong password",
                 (input: string) => {
                   if (input === values.password)
-                    signUp(values.email, values.password);
+                    console.log(
+                      values.email + values.password
+                    ) /* signUp(values.email, values.password) */;
                 }
               );
             }}

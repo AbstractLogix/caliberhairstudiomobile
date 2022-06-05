@@ -12,7 +12,6 @@ import {
   GalleryScreen,
   HomeScreen,
   Logo,
-  Onboarding,
   PortfolioScreen,
   ProductScreen,
   ProductsScreen,
